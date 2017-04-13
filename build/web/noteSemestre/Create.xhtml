@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NoteSemestreCreateDlg" widgetVar="NoteSemestreCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNoteSemestreTitle}">
+            <h:form id="NoteSemestreCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{noteSemestreController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateNoteSemestreLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{noteSemestreController.selected.id}" title="#{bundle.CreateNoteSemestreTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateNoteSemestreLabel_etudiant}" for="etudiant" />
+                        <p:selectOneMenu id="etudiant" value="#{noteSemestreController.selected.etudiant}" >
+                            <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
+                                           var="etudiantItem"
+                                           itemValue="#{etudiantItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNoteSemestreLabel_note}" for="note" />
+                        <p:inputText id="note" value="#{noteSemestreController.selected.note}" title="#{bundle.CreateNoteSemestreTitle_note}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{noteSemestreController.create}" value="#{bundle.Save}" update="display,:NoteSemestreListForm:datalist,:growl" oncomplete="handleSubmit(args,'NoteSemestreCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="NoteSemestreCreateDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
