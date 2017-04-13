@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="NoteModulaireViewDlg" widgetVar="NoteModulaireViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNoteModulaireTitle}">
+            <h:form id="NoteModulaireViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{noteModulaireController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_id}"/>
+                        <h:outputText value="#{noteModulaireController.selected.id}" title="#{bundle.ViewNoteModulaireTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_etudiant}"/>
+                        <h:outputText value="#{noteModulaireController.selected.etudiant}" title="#{bundle.ViewNoteModulaireTitle_etudiant}"/>
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_module}"/>
+                        <h:outputText value="#{noteModulaireController.selected.module}" title="#{bundle.ViewNoteModulaireTitle_module}"/>
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_note}"/>
+                        <h:outputText value="#{noteModulaireController.selected.note}" title="#{bundle.ViewNoteModulaireTitle_note}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="NoteModulaireViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
