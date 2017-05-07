@@ -3,31 +3,41 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition>
-
-        <p:dialog id="NoteSemestreCreateDlg" widgetVar="NoteSemestreCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNoteSemestreTitle}">
-            <h:form id="NoteSemestreCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{noteSemestreController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateNoteSemestreLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{noteSemestreController.selected.id}" title="#{bundle.CreateNoteSemestreTitle_id}" />
-                        <p:outputLabel value="#{bundle.CreateNoteSemestreLabel_etudiant}" for="etudiant" />
-                        <p:selectOneMenu id="etudiant" value="#{noteSemestreController.selected.etudiant}" >
-                            <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
-                                           var="etudiantItem"
-                                           itemValue="#{etudiantItem}"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateNoteSemestreLabel_note}" for="note" />
-                        <p:inputText id="note" value="#{noteSemestreController.selected.note}" title="#{bundle.CreateNoteSemestreTitle_note}" />
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{noteSemestreController.create}" value="#{bundle.Save}" update="display,:NoteSemestreListForm:datalist,:growl" oncomplete="handleSubmit(args,'NoteSemestreCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="NoteSemestreCreateDialog.hide()"/>
-                </h:panelGroup>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateNoteSemestreTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateNoteSemestreLabel_id}" for="id" />
+                    <h:inputText id="id" value="#{noteSemestreController.selected.id}" title="#{bundle.CreateNoteSemestreTitle_id}" />
+                    <h:outputLabel value="#{bundle.CreateNoteSemestreLabel_etudiant}" for="etudiant" />
+                    <h:selectOneMenu id="etudiant" value="#{noteSemestreController.selected.etudiant}" title="#{bundle.CreateNoteSemestreTitle_etudiant}" >
+                        <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNoteSemestreLabel_semestre}" for="semestre" />
+                    <h:selectOneMenu id="semestre" value="#{noteSemestreController.selected.semestre}" title="#{bundle.CreateNoteSemestreTitle_semestre}" >
+                        <f:selectItems value="#{semestreController.itemsAvailableSelectOne}"/>
+                    </h:selectOneMenu>
+                    <h:outputLabel value="#{bundle.CreateNoteSemestreLabel_note}" for="note" />
+                    <h:inputText id="note" value="#{noteSemestreController.selected.note}" title="#{bundle.CreateNoteSemestreTitle_note}" />
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{noteSemestreController.create}" value="#{bundle.CreateNoteSemestreSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{noteSemestreController.prepareList}" value="#{bundle.CreateNoteSemestreShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateNoteSemestreIndexLink}"/>
             </h:form>
-        </p:dialog>
-
+        </ui:define>
     </ui:composition>
+
 </html>

@@ -24,6 +24,8 @@ public class NoteModulaire implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double note;
+    private String mention;
+//    private boolean rattrapage;
 
     @ManyToOne
     private Etudiant etudiant;

@@ -32,6 +32,12 @@ public class Module implements Serializable {
 
     @ManyToOne
     private Semestre semestre;
+    
+    @ManyToOne
+    private Enseignant enseignant;
+
+    @ManyToOne
+    private Filiere filiere;
 
     public Long getId() {
         return id;

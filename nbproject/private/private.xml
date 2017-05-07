@@ -2,13 +2,6 @@
 <project-private xmlns="http://www.netbeans.org/ns/project-private/1">
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
-        <group>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/PFE/src/conf/persistence.xml</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/PFE/src/java/bean/NoteModulaire.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/PFE/src/java/bean/Module.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/PFE/src/java/bean/Semestre.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/PFE/src/java/bean/Etudiant.java</file>
-            <file>file:/C:/Users/acer/Documents/NetBeansProjects/PFE/src/java/bean/NoteSemestre.java</file>
-        </group>
+        <group/>
     </open-files>
 </project-private>

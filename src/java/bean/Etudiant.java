@@ -10,6 +10,7 @@ import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
 
@@ -19,7 +20,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Etudiant implements Serializable {
-
+    
     private static final long serialVersionUID = 1L;
     @Id
     private Long cne;
@@ -27,14 +28,21 @@ public class Etudiant implements Serializable {
     private String prenom;
     private String email;
     private String gender;
+    private String password;
     @Temporal(javax.persistence.TemporalType.DATE)
-    private Date dateNaiss;
+    private Date dateNaissance;
 
+    @OneToMany(mappedBy = "etudiant")
+    private List<NoteAnnuelle> noteAnnuelles;
+    
     @OneToMany(mappedBy = "etudiant")
     private List<NoteSemestre> noteSemestres;
-
+    
     @OneToMany(mappedBy = "etudiant")
     private List<NoteModulaire> noteModulaires;
+    
+    @ManyToOne
+    private Filiere filiere;
 
     public Long getCne() {
         return cne;
@@ -76,6 +84,14 @@ public class Etudiant implements Serializable {
         this.email = email;
     }
 
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
     public String getGender() {
         return gender;
     }
@@ -92,12 +108,12 @@ public class Etudiant implements Serializable {
         this.noteModulaires = noteModulaires;
     }
 
-    public Date getDateNaiss() {
-        return dateNaiss;
+    public Date getDateNaissance() {
+        return dateNaissance;
     }
 
-    public void setDateNaiss(Date dateNaiss) {
-        this.dateNaiss = dateNaiss;
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
     }
 
     @Override

@@ -26,7 +26,9 @@ public class NoteSemestre implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Double note;
-
+    private String mention;
+    private int nbrModuleValide;
+    
     @ManyToOne
     private Etudiant etudiant;
 

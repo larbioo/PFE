@@ -3,37 +3,45 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition>
-
-        <p:dialog id="EtudiantCreateDlg" widgetVar="EtudiantCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEtudiantTitle}">
-            <h:form id="EtudiantCreateForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{etudiantController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_cne}" for="cne" />
-                        <p:inputText id="cne" value="#{etudiantController.selected.cne}" title="#{bundle.CreateEtudiantTitle_cne}" />
-                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_nom}" for="nom" />
-                        <p:inputText id="nom" value="#{etudiantController.selected.nom}" title="#{bundle.CreateEtudiantTitle_nom}" />
-                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_prenom}" for="prenom" />
-                        <p:inputText id="prenom" value="#{etudiantController.selected.prenom}" title="#{bundle.CreateEtudiantTitle_prenom}" />
-                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_email}" for="email" />
-                        <p:inputText id="email" value="#{etudiantController.selected.email}" title="#{bundle.CreateEtudiantTitle_email}" />
-                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_gender}" for="gender" />
-                        <p:selectOneMenu id="gender" value="#{etudiantController.selected.gender}" >
-                            <f:selectItem itemValue="#{null}" itemLabel="#{bundle.SelectOneMessage}"/>
-                            <f:selectItem itemValue="M" itemLabel="M"/>
-                            <f:selectItem itemValue="F" itemLabel="F"/>
-                        </p:selectOneMenu>
-                        <p:outputLabel value="#{bundle.CreateEtudiantLabel_dateNaiss}" for="dateNaiss" />
-                        <p:calendar id="dateNaiss" pattern="MM/dd/yyyy" value="#{etudiantController.selected.dateNaiss}" title="#{bundle.EditEtudiantTitle_dateNaiss}"  showOn="button"/>
-                    </p:panelGrid>
-                    <p:commandButton actionListener="#{etudiantController.create}" value="#{bundle.Save}" update="display,:EtudiantListForm:datalist,:growl" oncomplete="handleSubmit(args,'EtudiantCreateDialog');"/>
-                    <p:commandButton value="#{bundle.Cancel}" onclick="EtudiantCreateDialog.hide()"/>
-                </h:panelGroup>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.CreateEtudiantTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputLabel value="#{bundle.CreateEtudiantLabel_cne}" for="cne" />
+                    <h:inputText id="cne" value="#{etudiantController.selected.cne}" title="#{bundle.CreateEtudiantTitle_cne}" />
+                    <h:outputLabel value="#{bundle.CreateEtudiantLabel_nom}" for="nom" />
+                    <h:inputText id="nom" value="#{etudiantController.selected.nom}" title="#{bundle.CreateEtudiantTitle_nom}" />
+                    <h:outputLabel value="#{bundle.CreateEtudiantLabel_prenom}" for="prenom" />
+                    <h:inputText id="prenom" value="#{etudiantController.selected.prenom}" title="#{bundle.CreateEtudiantTitle_prenom}" />
+                    <h:outputLabel value="#{bundle.CreateEtudiantLabel_email}" for="email" />
+                    <h:inputText id="email" value="#{etudiantController.selected.email}" title="#{bundle.CreateEtudiantTitle_email}" />
+                    <h:outputLabel value="#{bundle.CreateEtudiantLabel_password}" for="password" />
+                    <h:inputText id="password" value="#{etudiantController.selected.password}" title="#{bundle.CreateEtudiantTitle_password}" />
+                    <h:outputLabel value="#{bundle.CreateEtudiantLabel_gender}" for="gender" />
+                    <h:inputText id="gender" value="#{etudiantController.selected.gender}" title="#{bundle.CreateEtudiantTitle_gender}" />
+                    <h:outputLabel value="#{bundle.CreateEtudiantLabel_dateNaissance}" for="dateNaissance" />
+                    <h:inputText id="dateNaissance" value="#{etudiantController.selected.dateNaissance}" title="#{bundle.CreateEtudiantTitle_dateNaissance}" >
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:inputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{etudiantController.create}" value="#{bundle.CreateEtudiantSaveLink}" />
+                <br />
+                <br />
+                <h:commandLink action="#{etudiantController.prepareList}" value="#{bundle.CreateEtudiantShowAllLink}" immediate="true"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.CreateEtudiantIndexLink}"/>
             </h:form>
-        </p:dialog>
-
+        </ui:define>
     </ui:composition>
+
 </html>

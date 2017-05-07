@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ListDemandeTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:form styleClass="jsfcrud_list_form">
+                <h:panelGroup id="messagePanel" layout="block">
+                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+                </h:panelGroup>
+                <h:outputText escape="false" value="#{bundle.ListDemandeEmpty}" rendered="#{demandeController.items.rowCount == 0}"/>
+                <h:panelGroup rendered="#{demandeController.items.rowCount > 0}">
+                    <h:outputText value="#{demandeController.pagination.pageFirstItem + 1}..#{demandeController.pagination.pageLastItem + 1}/#{demandeController.pagination.itemsCount}"/>&nbsp;
+                    <h:commandLink action="#{demandeController.previous}" value="#{bundle.Previous} #{demandeController.pagination.pageSize}" rendered="#{demandeController.pagination.hasPreviousPage}"/>&nbsp;
+                    <h:commandLink action="#{demandeController.next}" value="#{bundle.Next} #{demandeController.pagination.pageSize}" rendered="#{demandeController.pagination.hasNextPage}"/>&nbsp;
+                    <h:dataTable value="#{demandeController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListDemandeTitle_id}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.id}"/>
+                        </h:column>
+                        <h:column>
+                            <f:facet name="header">
+                                <h:outputText value="&nbsp;"/>
+                            </f:facet>
+                            <h:commandLink action="#{demandeController.prepareView}" value="#{bundle.ListDemandeViewLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{demandeController.prepareEdit}" value="#{bundle.ListDemandeEditLink}"/>
+                            <h:outputText value=" "/>
+                            <h:commandLink action="#{demandeController.destroy}" value="#{bundle.ListDemandeDestroyLink}"/>
+                        </h:column>
+                    </h:dataTable>
+                </h:panelGroup>
+                <br />
+                <h:commandLink action="#{demandeController.prepareCreate}" value="#{bundle.ListDemandeCreateLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ListDemandeIndexLink}"/>
+            </h:form>
+        </ui:define>
+    </ui:composition>
+
+</html>

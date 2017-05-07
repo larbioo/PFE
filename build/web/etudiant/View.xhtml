@@ -3,34 +3,50 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core"
-      xmlns:p="http://primefaces.org/ui">
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
 
-    <ui:composition>
+    <ui:composition template="/template.xhtml">
+        <ui:define name="title">
+            <h:outputText value="#{bundle.ViewEtudiantTitle}"></h:outputText>
+        </ui:define>
+        <ui:define name="body">
+            <h:panelGroup id="messagePanel" layout="block">
+                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
+            </h:panelGroup>
+            <h:form>
+                <h:panelGrid columns="2">
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_cne}"/>
+                    <h:outputText value="#{etudiantController.selected.cne}" title="#{bundle.ViewEtudiantTitle_cne}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_nom}"/>
+                    <h:outputText value="#{etudiantController.selected.nom}" title="#{bundle.ViewEtudiantTitle_nom}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_prenom}"/>
+                    <h:outputText value="#{etudiantController.selected.prenom}" title="#{bundle.ViewEtudiantTitle_prenom}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_email}"/>
+                    <h:outputText value="#{etudiantController.selected.email}" title="#{bundle.ViewEtudiantTitle_email}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_password}"/>
+                    <h:outputText value="#{etudiantController.selected.password}" title="#{bundle.ViewEtudiantTitle_password}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_gender}"/>
+                    <h:outputText value="#{etudiantController.selected.gender}" title="#{bundle.ViewEtudiantTitle_gender}"/>
+                    <h:outputText value="#{bundle.ViewEtudiantLabel_dateNaissance}"/>
+                    <h:outputText value="#{etudiantController.selected.dateNaissance}" title="#{bundle.ViewEtudiantTitle_dateNaissance}">
+                        <f:convertDateTime pattern="MM/dd/yyyy" />
+                    </h:outputText>
+                </h:panelGrid>
+                <br />
+                <h:commandLink action="#{etudiantController.destroyAndView}" value="#{bundle.ViewEtudiantDestroyLink}"/>
+                <br />
+                <br />
+                <h:link outcome="Edit" value="#{bundle.ViewEtudiantEditLink}"/>
+                <br />
+                <h:commandLink action="#{etudiantController.prepareCreate}" value="#{bundle.ViewEtudiantCreateLink}" />
+                <br />
+                <h:commandLink action="#{etudiantController.prepareList}" value="#{bundle.ViewEtudiantShowAllLink}"/>
+                <br />
+                <br />
+                <h:link outcome="/index" value="#{bundle.ViewEtudiantIndexLink}"/>
 
-        <p:dialog id="EtudiantViewDlg" widgetVar="EtudiantViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEtudiantTitle}">
-            <h:form id="EtudiantViewForm">
-                <h:panelGroup id="display">
-                    <p:panelGrid columns="2" rendered="#{etudiantController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEtudiantLabel_cne}"/>
-                        <h:outputText value="#{etudiantController.selected.cne}" title="#{bundle.ViewEtudiantTitle_cne}"/>
-                        <h:outputText value="#{bundle.ViewEtudiantLabel_nom}"/>
-                        <h:outputText value="#{etudiantController.selected.nom}" title="#{bundle.ViewEtudiantTitle_nom}"/>
-                        <h:outputText value="#{bundle.ViewEtudiantLabel_prenom}"/>
-                        <h:outputText value="#{etudiantController.selected.prenom}" title="#{bundle.ViewEtudiantTitle_prenom}"/>
-                        <h:outputText value="#{bundle.ViewEtudiantLabel_email}"/>
-                        <h:outputText value="#{etudiantController.selected.email}" title="#{bundle.ViewEtudiantTitle_email}"/>
-                        <h:outputText value="#{bundle.ViewEtudiantLabel_gender}"/>
-                        <h:outputText value="#{etudiantController.selected.gender}" title="#{bundle.ViewEtudiantTitle_gender}"/>
-                        <h:outputText value="#{bundle.ViewEtudiantLabel_dateNaiss}"/>
-                        <h:outputText value="#{etudiantController.selected.dateNaiss}" title="#{bundle.ViewEtudiantTitle_dateNaiss}">
-                            <f:convertDateTime pattern="MM/dd/yyyy" />
-                        </h:outputText>
-                    </p:panelGrid>
-                    <p:commandButton value="#{bundle.Close}" onclick="EtudiantViewDialog.hide()"/>
-                </h:panelGroup>
             </h:form>
-        </p:dialog>
-
+        </ui:define>
     </ui:composition>
+
 </html>
