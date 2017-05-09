@@ -21,6 +21,17 @@
                                            var="anneeItem"
                                            itemValue="#{anneeItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSemestreLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{semestreController.selected.libelle}" title="#{bundle.EditSemestreTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditSemestreLabel_filiere}" for="filiere" />
+                        <p:selectOneMenu id="filiere" value="#{semestreController.selected.filiere}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{filiereController.itemsAvailableSelectOne}"
+                                           var="filiereItem"
+                                           itemValue="#{filiereItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditSemestreLabel_enseignant}" for="enseignant" />
+                        <p:inputText id="enseignant" value="#{semestreController.selected.enseignant}" title="#{bundle.EditSemestreTitle_enseignant}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{semestreController.update}" value="#{bundle.Save}" update="display,:SemestreListForm:datalist,:growl" oncomplete="handleSubmit(args, 'SemestreEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SemestreEditDialog.hide()"/>

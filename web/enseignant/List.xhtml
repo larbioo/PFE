@@ -19,7 +19,7 @@
                     <p:dataTable id="datalist" value="#{enseignantController.items}" var="item"
                                  selectionMode="single" selection="#{enseignantController.selected}"
                                  paginator="true"
-                                 rowKey="#{item.id}"
+                                 rowKey="#{item.cin}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"
                                  >
@@ -29,9 +29,9 @@
 
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEnseignantTitle_id}"/>
+                                <h:outputText value="#{bundle.ListEnseignantTitle_cin}"/>
                             </f:facet>
-                            <h:outputText value="#{item.id}"/>
+                            <h:outputText value="#{item.cin}"/>
                         </p:column>
                         <p:column>
                             <f:facet name="header">
@@ -62,6 +62,38 @@
                                 <h:outputText value="#{bundle.ListEnseignantTitle_filiere}"/>
                             </f:facet>
                             <h:outputText value="#{item.filiere}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_telephone}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.telephone}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_gender}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.gender}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_dateNaissance}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.dateNaissance}">
+                                <f:convertDateTime pattern="MM/dd/yyyy" />
+                            </h:outputText>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_nbrCnx}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.nbrCnx}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_tentativeRest}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.tentativeRest}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{enseignantController.prepareCreate}" update=":EnseignantCreateForm" oncomplete="PF('EnseignantCreateDialog').show()"/>

@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 
 /**
  *
@@ -19,8 +20,6 @@ import javax.persistence.OneToMany;
  */
 @Entity
 public class Filiere implements Serializable {
-
-
 
     private static final long serialVersionUID = 1L;
     @Id
@@ -30,6 +29,12 @@ public class Filiere implements Serializable {
     
     @OneToMany(mappedBy = "filiere")
     private List<Module> modules;
+
+    @OneToOne(mappedBy = "filiere")
+    private Enseignant chefFiliere;
+
+    @OneToMany(mappedBy = "filiere")
+    private List<Semestre> semestres;
     
     @OneToMany(mappedBy = "filiere")
     private List<Enseignant> enseignants;
@@ -75,6 +80,22 @@ public class Filiere implements Serializable {
 
     public void setEtudiants(List<Etudiant> etudiants) {
         this.etudiants = etudiants;
+    }
+
+    public Enseignant getChefFiliere() {
+        return chefFiliere;
+    }
+
+    public void setChefFiliere(Enseignant admin) {
+        this.chefFiliere = admin;
+    }
+
+    public List<Semestre> getSemestres() {
+        return semestres;
+    }
+
+    public void setSemestres(List<Semestre> semestres) {
+        this.semestres = semestres;
     }
 
     @Override

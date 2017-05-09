@@ -25,7 +25,6 @@ public class NoteModulaire implements Serializable {
     private Long id;
     private Double note;
     private String mention;
-//    private boolean rattrapage;
 
     @ManyToOne
     private Etudiant etudiant;

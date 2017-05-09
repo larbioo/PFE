@@ -35,9 +35,9 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
-                                <h:outputText value="#{bundle.ListAnneeInscriptionTitle_anneeInscription}"/>
+                                <h:outputText value="#{bundle.ListAnneeInscriptionTitle_annee}"/>
                             </f:facet>
-                            <h:outputText value="#{item.anneeInscription}"/>
+                            <h:outputText value="#{item.annee}"/>
                         </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{anneeInscriptionController.prepareCreate}" update=":AnneeInscriptionCreateForm" oncomplete="PF('AnneeInscriptionCreateDialog').show()"/>

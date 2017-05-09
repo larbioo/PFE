@@ -14,6 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{anneeController.selected != null}">
                         <p:outputLabel value="#{bundle.EditAnneeLabel_id}" for="id" />
                         <p:inputText id="id" value="#{anneeController.selected.id}" title="#{bundle.EditAnneeTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditAnneeLabel_libelle}" for="libelle" />
+                        <p:inputText id="libelle" value="#{anneeController.selected.libelle}" title="#{bundle.EditAnneeTitle_libelle}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{anneeController.update}" value="#{bundle.Save}" update="display,:AnneeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'AnneeEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="AnneeEditDialog.hide()"/>

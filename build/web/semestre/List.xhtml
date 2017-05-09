@@ -39,6 +39,24 @@
                             </f:facet>
                             <h:outputText value="#{item.annee}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSemestreTitle_libelle}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.libelle}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSemestreTitle_filiere}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.filiere}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListSemestreTitle_enseignant}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.enseignant}"/>
+                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{semestreController.prepareCreate}" update=":SemestreCreateForm" oncomplete="PF('SemestreCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":SemestreViewForm" oncomplete="PF('SemestreViewDialog').show()" disabled="#{empty semestreController.selected}"/>

@@ -12,8 +12,8 @@
             <h:form id="EnseignantViewForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
-                        <h:outputText value="#{bundle.ViewEnseignantLabel_id}"/>
-                        <h:outputText value="#{enseignantController.selected.id}" title="#{bundle.ViewEnseignantTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_cin}"/>
+                        <h:outputText value="#{enseignantController.selected.cin}" title="#{bundle.ViewEnseignantTitle_cin}"/>
                         <h:outputText value="#{bundle.ViewEnseignantLabel_nom}"/>
                         <h:outputText value="#{enseignantController.selected.nom}" title="#{bundle.ViewEnseignantTitle_nom}"/>
                         <h:outputText value="#{bundle.ViewEnseignantLabel_prenom}"/>
@@ -24,6 +24,18 @@
                         <h:outputText value="#{enseignantController.selected.password}" title="#{bundle.ViewEnseignantTitle_password}"/>
                         <h:outputText value="#{bundle.ViewEnseignantLabel_filiere}"/>
                         <h:outputText value="#{enseignantController.selected.filiere}" title="#{bundle.ViewEnseignantTitle_filiere}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_telephone}"/>
+                        <h:outputText value="#{enseignantController.selected.telephone}" title="#{bundle.ViewEnseignantTitle_telephone}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_gender}"/>
+                        <h:outputText value="#{enseignantController.selected.gender}" title="#{bundle.ViewEnseignantTitle_gender}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_dateNaissance}"/>
+                        <h:outputText value="#{enseignantController.selected.dateNaissance}" title="#{bundle.ViewEnseignantTitle_dateNaissance}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_nbrCnx}"/>
+                        <h:outputText value="#{enseignantController.selected.nbrCnx}" title="#{bundle.ViewEnseignantTitle_nbrCnx}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_tentativeRest}"/>
+                        <h:outputText value="#{enseignantController.selected.tentativeRest}" title="#{bundle.ViewEnseignantTitle_tentativeRest}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="EnseignantViewDialog.hide()"/>
                 </h:panelGroup>

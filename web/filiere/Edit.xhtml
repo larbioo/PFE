@@ -16,6 +16,13 @@
                         <p:inputText id="id" value="#{filiereController.selected.id}" title="#{bundle.EditFiliereTitle_id}" />
                         <p:outputLabel value="#{bundle.EditFiliereLabel_libelle}" for="libelle" />
                         <p:inputText id="libelle" value="#{filiereController.selected.libelle}" title="#{bundle.EditFiliereTitle_libelle}" />
+                        <p:outputLabel value="#{bundle.EditFiliereLabel_chefFiliere}" for="chefFiliere" />
+                        <p:selectOneMenu id="chefFiliere" value="#{filiereController.selected.chefFiliere}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{enseignantController.itemsAvailableSelectOne}"
+                                           var="chefFiliereItem"
+                                           itemValue="#{chefFiliereItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{filiereController.update}" value="#{bundle.Save}" update="display,:FiliereListForm:datalist,:growl" oncomplete="handleSubmit(args, 'FiliereEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="FiliereEditDialog.hide()"/>

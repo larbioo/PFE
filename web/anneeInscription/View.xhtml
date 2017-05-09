@@ -14,8 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{anneeInscriptionController.selected != null}">
                         <h:outputText value="#{bundle.ViewAnneeInscriptionLabel_id}"/>
                         <h:outputText value="#{anneeInscriptionController.selected.id}" title="#{bundle.ViewAnneeInscriptionTitle_id}"/>
-                        <h:outputText value="#{bundle.ViewAnneeInscriptionLabel_anneeInscription}"/>
-                        <h:outputText value="#{anneeInscriptionController.selected.anneeInscription}" title="#{bundle.ViewAnneeInscriptionTitle_anneeInscription}"/>
+                        <h:outputText value="#{bundle.ViewAnneeInscriptionLabel_annee}"/>
+                        <h:outputText value="#{anneeInscriptionController.selected.annee}" title="#{bundle.ViewAnneeInscriptionTitle_annee}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="AnneeInscriptionViewDialog.hide()"/>
                 </h:panelGroup>

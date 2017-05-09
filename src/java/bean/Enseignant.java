@@ -6,13 +6,14 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.Date;
 import java.util.List;
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.Temporal;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -23,25 +24,37 @@ public class Enseignant implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
-    private Long id;
-    
+    private String cin;
     private String nom;
     private String prenom;
+    @Email
     private String email;
     private String password;
+    private String telephone;
+    private String gender;
+    @Temporal(javax.persistence.TemporalType.DATE)
+    private Date dateNaissance;
+    private boolean blocked;
+    private int nbrCnx;
+    private boolean mdpChanged;
+    private boolean admine;
+    private int tentativeRest;
     
     @OneToMany(mappedBy = "enseignant")
     private List<Module> modules;
-    @ManyToOne
-    private Filiere filiere;
+
+    @OneToMany(mappedBy = "user")
+    private List<Device> devices;
     
-    public Long getId() {
-        return id;
+    @ManyToOne
+    private Filiere filiere; // si il est admin
+    
+    public String getCin() {
+        return cin;
     }
 
-    public void setId(Long id) {
-        this.id = id;
+    public void setCin(String cin) {
+        this.cin = cin;
     }
 
     public String getNom() {
@@ -92,21 +105,93 @@ public class Enseignant implements Serializable {
         this.filiere = filiere;
     }
 
+    public String getTelephone() {
+        return telephone;
+    }
+
+    public void setTelephone(String telephone) {
+        this.telephone = telephone;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public Date getDateNaissance() {
+        return dateNaissance;
+    }
+
+    public void setDateNaissance(Date dateNaissance) {
+        this.dateNaissance = dateNaissance;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+
+    public int getNbrCnx() {
+        return nbrCnx;
+    }
+
+    public void setNbrCnx(int nbrCnx) {
+        this.nbrCnx = nbrCnx;
+    }
+
+    public boolean isMdpChanged() {
+        return mdpChanged;
+    }
+
+    public void setMdpChanged(boolean mdpChanged) {
+        this.mdpChanged = mdpChanged;
+    }
+
+    public boolean isAdmine() {
+        return admine;
+    }
+
+    public void setAdmine(boolean admine) {
+        this.admine = admine;
+    }
+
+    public int getTentativeRest() {
+        return tentativeRest;
+    }
+
+    public void setTentativeRest(int tentativeRest) {
+        this.tentativeRest = tentativeRest;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;
-        hash += (id != null ? id.hashCode() : 0);
+        hash += (cin != null ? cin.hashCode() : 0);
         return hash;
     }
 
     @Override
     public boolean equals(Object object) {
-        // TODO: Warning - this method won't work in the case the id fields are not set
+        // TODO: Warning - this method won't work in the case the cin fields are not set
         if (!(object instanceof Enseignant)) {
             return false;
         }
         Enseignant other = (Enseignant) object;
-        if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
+        if ((this.cin == null && other.cin != null) || (this.cin != null && !this.cin.equals(other.cin))) {
             return false;
         }
         return true;
@@ -114,7 +199,7 @@ public class Enseignant implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Enseignant[ id=" + id + " ]";
+        return "bean.Enseignant[ id=" + cin + " ]";
     }
     
 }

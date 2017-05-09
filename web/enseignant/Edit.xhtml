@@ -12,8 +12,8 @@
             <h:form id="EnseignantEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditEnseignantLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{enseignantController.selected.id}" title="#{bundle.EditEnseignantTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{enseignantController.selected.cin}" title="#{bundle.EditEnseignantTitle_cin}" />
                         <p:outputLabel value="#{bundle.EditEnseignantLabel_nom}" for="nom" />
                         <p:inputText id="nom" value="#{enseignantController.selected.nom}" title="#{bundle.EditEnseignantTitle_nom}" />
                         <p:outputLabel value="#{bundle.EditEnseignantLabel_prenom}" for="prenom" />
@@ -29,6 +29,16 @@
                                            var="filiereItem"
                                            itemValue="#{filiereItem}"/>
                         </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_telephone}" for="telephone" />
+                        <p:inputText id="telephone" value="#{enseignantController.selected.telephone}" title="#{bundle.EditEnseignantTitle_telephone}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_gender}" for="gender" />
+                        <p:inputText id="gender" value="#{enseignantController.selected.gender}" title="#{bundle.EditEnseignantTitle_gender}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_dateNaissance}" for="dateNaissance" />
+                        <p:calendar id="dateNaissance" pattern="MM/dd/yyyy" value="#{enseignantController.selected.dateNaissance}" title="#{bundle.EditEnseignantTitle_dateNaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_nbrCnx}" for="nbrCnx" />
+                        <p:inputText id="nbrCnx" value="#{enseignantController.selected.nbrCnx}" title="#{bundle.EditEnseignantTitle_nbrCnx}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_tentativeRest}" for="tentativeRest" />
+                        <p:inputText id="tentativeRest" value="#{enseignantController.selected.tentativeRest}" title="#{bundle.EditEnseignantTitle_tentativeRest}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{enseignantController.update}" value="#{bundle.Save}" update="display,:EnseignantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EnseignantEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EnseignantEditDialog.hide()"/>

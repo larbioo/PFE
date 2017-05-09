@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("semestreController")
 @SessionScoped
 public class SemestreController implements Serializable {
 
-    @EJB
-    private service.SemestreFacade ejbFacade;
+
+    @EJB private service.SemestreFacade ejbFacade;
     private List<Semestre> items = null;
     private Semestre selected;
 
@@ -121,7 +122,7 @@ public class SemestreController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Semestre.class)
+    @FacesConverter(forClass=Semestre.class)
     public static class SemestreControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class SemestreController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            SemestreController controller = (SemestreController) facesContext.getApplication().getELResolver().
+            SemestreController controller = (SemestreController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "semestreController");
             return controller.getSemestre(getKey(value));
         }

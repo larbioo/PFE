@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("noteAnnuelleController")
 @SessionScoped
 public class NoteAnnuelleController implements Serializable {
 
-    @EJB
-    private service.NoteAnnuelleFacade ejbFacade;
+
+    @EJB private service.NoteAnnuelleFacade ejbFacade;
     private List<NoteAnnuelle> items = null;
     private NoteAnnuelle selected;
 
@@ -121,7 +122,7 @@ public class NoteAnnuelleController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = NoteAnnuelle.class)
+    @FacesConverter(forClass=NoteAnnuelle.class)
     public static class NoteAnnuelleControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class NoteAnnuelleController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            NoteAnnuelleController controller = (NoteAnnuelleController) facesContext.getApplication().getELResolver().
+            NoteAnnuelleController controller = (NoteAnnuelleController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "noteAnnuelleController");
             return controller.getNoteAnnuelle(getKey(value));
         }

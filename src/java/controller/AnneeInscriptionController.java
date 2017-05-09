@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("anneeInscriptionController")
 @SessionScoped
 public class AnneeInscriptionController implements Serializable {
 
-    @EJB
-    private service.AnneeInscriptionFacade ejbFacade;
+
+    @EJB private service.AnneeInscriptionFacade ejbFacade;
     private List<AnneeInscription> items = null;
     private AnneeInscription selected;
 
@@ -121,7 +122,7 @@ public class AnneeInscriptionController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = AnneeInscription.class)
+    @FacesConverter(forClass=AnneeInscription.class)
     public static class AnneeInscriptionControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class AnneeInscriptionController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            AnneeInscriptionController controller = (AnneeInscriptionController) facesContext.getApplication().getELResolver().
+            AnneeInscriptionController controller = (AnneeInscriptionController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "anneeInscriptionController");
             return controller.getAnneeInscription(getKey(value));
         }

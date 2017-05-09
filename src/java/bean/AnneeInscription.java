@@ -23,7 +23,7 @@ public class AnneeInscription implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Integer anneeInscription;
+    private int annee;
 
     public Long getId() {
         return id;
@@ -33,12 +33,12 @@ public class AnneeInscription implements Serializable {
         this.id = id;
     }
 
-    public Integer getAnneeInscription() {
-        return anneeInscription;
+    public int getAnnee() {
+        return annee;
     }
 
-    public void setAnneeInscription(Integer anneeInscription) {
-        this.anneeInscription = anneeInscription;
+    public void setAnnee(int annee) {
+        this.annee = annee;
     }
 
     @Override

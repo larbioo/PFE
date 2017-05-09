@@ -1,9 +1,9 @@
 package controller;
 
-import bean.Enseignant;
+import bean.Device;
 import controller.util.JsfUtil;
 import controller.util.JsfUtil.PersistAction;
-import service.EnseignantFacade;
+import service.DeviceFacade;
 
 import java.io.Serializable;
 import java.util.List;
@@ -20,23 +20,23 @@ import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
 
-@Named("enseignantController")
+@Named("deviceController")
 @SessionScoped
-public class EnseignantController implements Serializable {
+public class DeviceController implements Serializable {
 
 
-    @EJB private service.EnseignantFacade ejbFacade;
-    private List<Enseignant> items = null;
-    private Enseignant selected;
+    @EJB private service.DeviceFacade ejbFacade;
+    private List<Device> items = null;
+    private Device selected;
 
-    public EnseignantController() {
+    public DeviceController() {
     }
 
-    public Enseignant getSelected() {
+    public Device getSelected() {
         return selected;
     }
 
-    public void setSelected(Enseignant selected) {
+    public void setSelected(Device selected) {
         this.selected = selected;
     }
 
@@ -46,36 +46,36 @@ public class EnseignantController implements Serializable {
     protected void initializeEmbeddableKey() {
     }
 
-    private EnseignantFacade getFacade() {
+    private DeviceFacade getFacade() {
         return ejbFacade;
     }
 
-    public Enseignant prepareCreate() {
-        selected = new Enseignant();
+    public Device prepareCreate() {
+        selected = new Device();
         initializeEmbeddableKey();
         return selected;
     }
 
     public void create() {
-        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("EnseignantCreated"));
+        persist(PersistAction.CREATE, ResourceBundle.getBundle("/Bundle").getString("DeviceCreated"));
         if (!JsfUtil.isValidationFailed()) {
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
     public void update() {
-        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("EnseignantUpdated"));
+        persist(PersistAction.UPDATE, ResourceBundle.getBundle("/Bundle").getString("DeviceUpdated"));
     }
 
     public void destroy() {
-        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("EnseignantDeleted"));
+        persist(PersistAction.DELETE, ResourceBundle.getBundle("/Bundle").getString("DeviceDeleted"));
         if (!JsfUtil.isValidationFailed()) {
             selected = null; // Remove selection
             items = null;    // Invalidate list of items to trigger re-query.
         }
     }
 
-    public List<Enseignant> getItems() {
+    public List<Device> getItems() {
         if (items == null) {
             items = getFacade().findAll();
         }
@@ -110,38 +110,38 @@ public class EnseignantController implements Serializable {
         }
     }
 
-    public Enseignant getEnseignant(java.lang.String id) {
+    public Device getDevice(java.lang.Long id) {
         return getFacade().find(id);
     }
 
-    public List<Enseignant> getItemsAvailableSelectMany() {
+    public List<Device> getItemsAvailableSelectMany() {
         return getFacade().findAll();
     }
 
-    public List<Enseignant> getItemsAvailableSelectOne() {
+    public List<Device> getItemsAvailableSelectOne() {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass=Enseignant.class)
-    public static class EnseignantControllerConverter implements Converter {
+    @FacesConverter(forClass=Device.class)
+    public static class DeviceControllerConverter implements Converter {
 
         @Override
         public Object getAsObject(FacesContext facesContext, UIComponent component, String value) {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            EnseignantController controller = (EnseignantController)facesContext.getApplication().getELResolver().
-                    getValue(facesContext.getELContext(), null, "enseignantController");
-            return controller.getEnseignant(getKey(value));
+            DeviceController controller = (DeviceController)facesContext.getApplication().getELResolver().
+                    getValue(facesContext.getELContext(), null, "deviceController");
+            return controller.getDevice(getKey(value));
         }
 
-        java.lang.String getKey(String value) {
-            java.lang.String key;
-            key = value;
+        java.lang.Long getKey(String value) {
+            java.lang.Long key;
+            key = Long.valueOf(value);
             return key;
         }
 
-        String getStringKey(java.lang.String value) {
+        String getStringKey(java.lang.Long value) {
             StringBuilder sb = new StringBuilder();
             sb.append(value);
             return sb.toString();
@@ -152,11 +152,11 @@ public class EnseignantController implements Serializable {
             if (object == null) {
                 return null;
             }
-            if (object instanceof Enseignant) {
-                Enseignant o = (Enseignant) object;
-                return getStringKey(o.getCin());
+            if (object instanceof Device) {
+                Device o = (Device) object;
+                return getStringKey(o.getId());
             } else {
-                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Enseignant.class.getName()});
+                Logger.getLogger(this.getClass().getName()).log(Level.SEVERE, "object {0} is of type {1}; expected type: {2}", new Object[]{object, object.getClass().getName(), Device.class.getName()});
                 return null;
             }
         }

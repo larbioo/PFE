@@ -39,6 +39,12 @@
                             </f:facet>
                             <h:outputText value="#{item.libelle}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListFiliereTitle_chefFiliere}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.chefFiliere}"/>
+                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{filiereController.prepareCreate}" update=":FiliereCreateForm" oncomplete="PF('FiliereCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":FiliereViewForm" oncomplete="PF('FiliereViewDialog').show()" disabled="#{empty filiereController.selected}"/>

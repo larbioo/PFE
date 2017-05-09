@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("filiereController")
 @SessionScoped
 public class FiliereController implements Serializable {
 
-    @EJB
-    private service.FiliereFacade ejbFacade;
+
+    @EJB private service.FiliereFacade ejbFacade;
     private List<Filiere> items = null;
     private Filiere selected;
 
@@ -121,7 +122,7 @@ public class FiliereController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = Filiere.class)
+    @FacesConverter(forClass=Filiere.class)
     public static class FiliereControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class FiliereController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            FiliereController controller = (FiliereController) facesContext.getApplication().getELResolver().
+            FiliereController controller = (FiliereController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "filiereController");
             return controller.getFiliere(getKey(value));
         }

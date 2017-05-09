@@ -14,8 +14,8 @@
                     <p:panelGrid columns="2" rendered="#{anneeInscriptionController.selected != null}">
                         <p:outputLabel value="#{bundle.CreateAnneeInscriptionLabel_id}" for="id" />
                         <p:inputText id="id" value="#{anneeInscriptionController.selected.id}" title="#{bundle.CreateAnneeInscriptionTitle_id}" />
-                        <p:outputLabel value="#{bundle.CreateAnneeInscriptionLabel_anneeInscription}" for="anneeInscription" />
-                        <p:inputText id="anneeInscription" value="#{anneeInscriptionController.selected.anneeInscription}" title="#{bundle.CreateAnneeInscriptionTitle_anneeInscription}" />
+                        <p:outputLabel value="#{bundle.CreateAnneeInscriptionLabel_annee}" for="annee" />
+                        <p:inputText id="annee" value="#{anneeInscriptionController.selected.annee}" title="#{bundle.CreateAnneeInscriptionTitle_annee}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{anneeInscriptionController.create}" value="#{bundle.Save}" update="display,:AnneeInscriptionListForm:datalist,:growl" oncomplete="handleSubmit(args,'AnneeInscriptionCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="AnneeInscriptionCreateDialog.hide()"/>

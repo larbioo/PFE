@@ -24,6 +24,7 @@ public class Annee implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    private int libelle;
     
     @OneToMany(mappedBy = "annee")
     private List<Semestre> semestres;
@@ -53,6 +54,14 @@ public class Annee implements Serializable {
 
     public void setNoteAnnuelles(List<NoteAnnuelle> noteAnnuelles) {
         this.noteAnnuelles = noteAnnuelles;
+    }
+
+    public int getLibelle() {
+        return libelle;
+    }
+
+    public void setLibelle(int libelle) {
+        this.libelle = libelle;
     }
 
     @Override

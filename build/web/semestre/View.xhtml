@@ -16,6 +16,12 @@
                         <h:outputText value="#{semestreController.selected.id}" title="#{bundle.ViewSemestreTitle_id}"/>
                         <h:outputText value="#{bundle.ViewSemestreLabel_annee}"/>
                         <h:outputText value="#{semestreController.selected.annee}" title="#{bundle.ViewSemestreTitle_annee}"/>
+                        <h:outputText value="#{bundle.ViewSemestreLabel_libelle}"/>
+                        <h:outputText value="#{semestreController.selected.libelle}" title="#{bundle.ViewSemestreTitle_libelle}"/>
+                        <h:outputText value="#{bundle.ViewSemestreLabel_filiere}"/>
+                        <h:outputText value="#{semestreController.selected.filiere}" title="#{bundle.ViewSemestreTitle_filiere}"/>
+                        <h:outputText value="#{bundle.ViewSemestreLabel_enseignant}"/>
+                        <h:outputText value="#{semestreController.selected.enseignant}" title="#{bundle.ViewSemestreTitle_enseignant}"/>
                     </p:panelGrid>
                     <p:commandButton value="#{bundle.Close}" onclick="SemestreViewDialog.hide()"/>
                 </h:panelGroup>

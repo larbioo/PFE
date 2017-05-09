@@ -19,12 +19,13 @@ import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 import javax.faces.convert.FacesConverter;
 
+
 @Named("demandeItemController")
 @SessionScoped
 public class DemandeItemController implements Serializable {
 
-    @EJB
-    private service.DemandeItemFacade ejbFacade;
+
+    @EJB private service.DemandeItemFacade ejbFacade;
     private List<DemandeItem> items = null;
     private DemandeItem selected;
 
@@ -121,7 +122,7 @@ public class DemandeItemController implements Serializable {
         return getFacade().findAll();
     }
 
-    @FacesConverter(forClass = DemandeItem.class)
+    @FacesConverter(forClass=DemandeItem.class)
     public static class DemandeItemControllerConverter implements Converter {
 
         @Override
@@ -129,7 +130,7 @@ public class DemandeItemController implements Serializable {
             if (value == null || value.length() == 0) {
                 return null;
             }
-            DemandeItemController controller = (DemandeItemController) facesContext.getApplication().getELResolver().
+            DemandeItemController controller = (DemandeItemController)facesContext.getApplication().getELResolver().
                     getValue(facesContext.getELContext(), null, "demandeItemController");
             return controller.getDemandeItem(getKey(value));
         }

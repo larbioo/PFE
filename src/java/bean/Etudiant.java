@@ -13,6 +13,7 @@ import javax.persistence.Id;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Temporal;
+import org.hibernate.validator.constraints.Email;
 
 /**
  *
@@ -26,11 +27,15 @@ public class Etudiant implements Serializable {
     private Long cne;
     private String nom;
     private String prenom;
+    @Email
     private String email;
     private String gender;
     private String password;
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
+
+    @OneToMany(mappedBy = "etudiant")
+    private List<Device> devices;
 
     @OneToMany(mappedBy = "etudiant")
     private List<Demande> demandes;
@@ -141,6 +146,14 @@ public class Etudiant implements Serializable {
 
     public void setFiliere(Filiere filiere) {
         this.filiere = filiere;
+    }
+
+    public List<Device> getDevices() {
+        return devices;
+    }
+
+    public void setDevices(List<Device> devices) {
+        this.devices = devices;
     }
 
     @Override
