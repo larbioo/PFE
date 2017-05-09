@@ -3,42 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewNoteModulaireTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewNoteModulaireLabel_id}"/>
-                    <h:outputText value="#{noteModulaireController.selected.id}" title="#{bundle.ViewNoteModulaireTitle_id}"/>
-                    <h:outputText value="#{bundle.ViewNoteModulaireLabel_etudiant}"/>
-                    <h:outputText value="#{noteModulaireController.selected.etudiant}" title="#{bundle.ViewNoteModulaireTitle_etudiant}"/>
-                    <h:outputText value="#{bundle.ViewNoteModulaireLabel_module}"/>
-                    <h:outputText value="#{noteModulaireController.selected.module}" title="#{bundle.ViewNoteModulaireTitle_module}"/>
-                    <h:outputText value="#{bundle.ViewNoteModulaireLabel_note}"/>
-                    <h:outputText value="#{noteModulaireController.selected.note}" title="#{bundle.ViewNoteModulaireTitle_note}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{noteModulaireController.destroyAndView}" value="#{bundle.ViewNoteModulaireDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewNoteModulaireEditLink}"/>
-                <br />
-                <h:commandLink action="#{noteModulaireController.prepareCreate}" value="#{bundle.ViewNoteModulaireCreateLink}" />
-                <br />
-                <h:commandLink action="#{noteModulaireController.prepareList}" value="#{bundle.ViewNoteModulaireShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewNoteModulaireIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="NoteModulaireViewDlg" widgetVar="NoteModulaireViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNoteModulaireTitle}">
+            <h:form id="NoteModulaireViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{noteModulaireController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_id}"/>
+                        <h:outputText value="#{noteModulaireController.selected.id}" title="#{bundle.ViewNoteModulaireTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_etudiant}"/>
+                        <h:outputText value="#{noteModulaireController.selected.etudiant}" title="#{bundle.ViewNoteModulaireTitle_etudiant}"/>
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_module}"/>
+                        <h:outputText value="#{noteModulaireController.selected.module}" title="#{bundle.ViewNoteModulaireTitle_module}"/>
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_note}"/>
+                        <h:outputText value="#{noteModulaireController.selected.note}" title="#{bundle.ViewNoteModulaireTitle_note}"/>
+                        <h:outputText value="#{bundle.ViewNoteModulaireLabel_mention}"/>
+                        <h:outputText value="#{noteModulaireController.selected.mention}" title="#{bundle.ViewNoteModulaireTitle_mention}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="NoteModulaireViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

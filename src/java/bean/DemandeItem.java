@@ -6,33 +6,31 @@
 package bean;
 
 import java.io.Serializable;
-import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 
 /**
  *
  * @author Abed
  */
 @Entity
-public class Semestre implements Serializable {
+public class DemandeItem implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    @OneToMany(mappedBy = "semestre")
-    private List<Module> modules;
+    @ManyToOne
+    private Module module;
+    @ManyToOne
+    private Semestre semestre;
 
     @ManyToOne
-    private Annee annee;
-    @OneToMany(mappedBy = "semestre")
-    private List<NoteSemestre> noteSemestres;
-
+    private Demande demande;
+    
     public Long getId() {
         return id;
     }
@@ -41,28 +39,28 @@ public class Semestre implements Serializable {
         this.id = id;
     }
 
-    public List<Module> getModules() {
-        return modules;
+    public Module getModule() {
+        return module;
     }
 
-    public void setModules(List<Module> modules) {
-        this.modules = modules;
+    public void setModule(Module module) {
+        this.module = module;
     }
 
-    public List<NoteSemestre> getNoteSemestres() {
-        return noteSemestres;
+    public Semestre getSemestre() {
+        return semestre;
     }
 
-    public void setNoteSemestres(List<NoteSemestre> noteSemestres) {
-        this.noteSemestres = noteSemestres;
+    public void setSemestre(Semestre semestre) {
+        this.semestre = semestre;
     }
 
-    public Annee getAnnee() {
-        return annee;
+    public Demande getDemande() {
+        return demande;
     }
 
-    public void setAnnee(Annee annee) {
-        this.annee = annee;
+    public void setDemande(Demande demande) {
+        this.demande = demande;
     }
 
     @Override
@@ -75,10 +73,10 @@ public class Semestre implements Serializable {
     @Override
     public boolean equals(Object object) {
         // TODO: Warning - this method won't work in the case the id fields are not set
-        if (!(object instanceof Semestre)) {
+        if (!(object instanceof DemandeItem)) {
             return false;
         }
-        Semestre other = (Semestre) object;
+        DemandeItem other = (DemandeItem) object;
         if ((this.id == null && other.id != null) || (this.id != null && !this.id.equals(other.id))) {
             return false;
         }
@@ -87,7 +85,7 @@ public class Semestre implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Semestre[ id=" + id + " ]";
+        return "bean.DemandeItem[ id=" + id + " ]";
     }
-
+    
 }

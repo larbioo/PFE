@@ -3,32 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditDemandeTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditDemandeLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{demandeController.selected.id}" title="#{bundle.EditDemandeTitle_id}" />
-                </h:panelGrid>
-                <h:commandLink action="#{demandeController.update}" value="#{bundle.EditDemandeSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditDemandeViewLink}"/>
-                <br />
-                <h:commandLink action="#{demandeController.prepareList}" value="#{bundle.EditDemandeShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditDemandeIndexLink}" />
+    <ui:composition>
+
+        <p:dialog id="DemandeEditDlg" widgetVar="DemandeEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDemandeTitle}">
+            <h:form id="DemandeEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{demandeController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDemandeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{demandeController.selected.id}" title="#{bundle.EditDemandeTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditDemandeLabel_etudiant}" for="etudiant" />
+                        <p:selectOneMenu id="etudiant" value="#{demandeController.selected.etudiant}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
+                                           var="etudiantItem"
+                                           itemValue="#{etudiantItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{demandeController.update}" value="#{bundle.Save}" update="display,:DemandeListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DemandeEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DemandeEditDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

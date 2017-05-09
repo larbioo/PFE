@@ -67,6 +67,22 @@ public class NoteSemestre implements Serializable {
         this.note = note;
     }
 
+    public String getMention() {
+        return mention;
+    }
+
+    public void setMention(String mention) {
+        this.mention = mention;
+    }
+
+    public int getNbrModuleValide() {
+        return nbrModuleValide;
+    }
+
+    public void setNbrModuleValide(int nbrModuleValide) {
+        this.nbrModuleValide = nbrModuleValide;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

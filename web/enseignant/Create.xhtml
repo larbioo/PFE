@@ -3,31 +3,37 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateEnseignantTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateEnseignantLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{enseignantController.selected.id}" title="#{bundle.CreateEnseignantTitle_id}" />
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{enseignantController.create}" value="#{bundle.CreateEnseignantSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{enseignantController.prepareList}" value="#{bundle.CreateEnseignantShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateEnseignantIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="EnseignantCreateDlg" widgetVar="EnseignantCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateEnseignantTitle}">
+            <h:form id="EnseignantCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{enseignantController.selected.id}" title="#{bundle.CreateEnseignantTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{enseignantController.selected.nom}" title="#{bundle.CreateEnseignantTitle_nom}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{enseignantController.selected.prenom}" title="#{bundle.CreateEnseignantTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{enseignantController.selected.email}" title="#{bundle.CreateEnseignantTitle_email}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{enseignantController.selected.password}" title="#{bundle.CreateEnseignantTitle_password}" />
+                        <p:outputLabel value="#{bundle.CreateEnseignantLabel_filiere}" for="filiere" />
+                        <p:selectOneMenu id="filiere" value="#{enseignantController.selected.filiere}" >
+                            <f:selectItems value="#{filiereController.itemsAvailableSelectOne}"
+                                           var="filiereItem"
+                                           itemValue="#{filiereItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{enseignantController.create}" value="#{bundle.Save}" update="display,:EnseignantListForm:datalist,:growl" oncomplete="handleSubmit(args,'EnseignantCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EnseignantCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

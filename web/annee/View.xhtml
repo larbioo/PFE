@@ -3,36 +3,22 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewAnneeTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewAnneeLabel_id}"/>
-                    <h:outputText value="#{anneeController.selected.id}" title="#{bundle.ViewAnneeTitle_id}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{anneeController.destroyAndView}" value="#{bundle.ViewAnneeDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewAnneeEditLink}"/>
-                <br />
-                <h:commandLink action="#{anneeController.prepareCreate}" value="#{bundle.ViewAnneeCreateLink}" />
-                <br />
-                <h:commandLink action="#{anneeController.prepareList}" value="#{bundle.ViewAnneeShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewAnneeIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="AnneeViewDlg" widgetVar="AnneeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewAnneeTitle}">
+            <h:form id="AnneeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{anneeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewAnneeLabel_id}"/>
+                        <h:outputText value="#{anneeController.selected.id}" title="#{bundle.ViewAnneeTitle_id}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="AnneeViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

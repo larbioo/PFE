@@ -3,41 +3,39 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateNoteModulaireTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateNoteModulaireLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{noteModulaireController.selected.id}" title="#{bundle.CreateNoteModulaireTitle_id}" />
-                    <h:outputLabel value="#{bundle.CreateNoteModulaireLabel_etudiant}" for="etudiant" />
-                    <h:selectOneMenu id="etudiant" value="#{noteModulaireController.selected.etudiant}" title="#{bundle.CreateNoteModulaireTitle_etudiant}" >
-                        <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateNoteModulaireLabel_module}" for="module" />
-                    <h:selectOneMenu id="module" value="#{noteModulaireController.selected.module}" title="#{bundle.CreateNoteModulaireTitle_module}" >
-                        <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"/>
-                    </h:selectOneMenu>
-                    <h:outputLabel value="#{bundle.CreateNoteModulaireLabel_note}" for="note" />
-                    <h:inputText id="note" value="#{noteModulaireController.selected.note}" title="#{bundle.CreateNoteModulaireTitle_note}" />
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{noteModulaireController.create}" value="#{bundle.CreateNoteModulaireSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{noteModulaireController.prepareList}" value="#{bundle.CreateNoteModulaireShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateNoteModulaireIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="NoteModulaireCreateDlg" widgetVar="NoteModulaireCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateNoteModulaireTitle}">
+            <h:form id="NoteModulaireCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{noteModulaireController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateNoteModulaireLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{noteModulaireController.selected.id}" title="#{bundle.CreateNoteModulaireTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateNoteModulaireLabel_etudiant}" for="etudiant" />
+                        <p:selectOneMenu id="etudiant" value="#{noteModulaireController.selected.etudiant}" >
+                            <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
+                                           var="etudiantItem"
+                                           itemValue="#{etudiantItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNoteModulaireLabel_module}" for="module" />
+                        <p:selectOneMenu id="module" value="#{noteModulaireController.selected.module}" >
+                            <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"
+                                           var="moduleItem"
+                                           itemValue="#{moduleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.CreateNoteModulaireLabel_note}" for="note" />
+                        <p:inputText id="note" value="#{noteModulaireController.selected.note}" title="#{bundle.CreateNoteModulaireTitle_note}" />
+                        <p:outputLabel value="#{bundle.CreateNoteModulaireLabel_mention}" for="mention" />
+                        <p:inputText id="mention" value="#{noteModulaireController.selected.mention}" title="#{bundle.CreateNoteModulaireTitle_mention}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{noteModulaireController.create}" value="#{bundle.Save}" update="display,:NoteModulaireListForm:datalist,:growl" oncomplete="handleSubmit(args,'NoteModulaireCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="NoteModulaireCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

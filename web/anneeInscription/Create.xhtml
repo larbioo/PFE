@@ -3,31 +3,25 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateAnneeInscriptionTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateAnneeInscriptionLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{anneeInscriptionController.selected.id}" title="#{bundle.CreateAnneeInscriptionTitle_id}" />
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{anneeInscriptionController.create}" value="#{bundle.CreateAnneeInscriptionSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{anneeInscriptionController.prepareList}" value="#{bundle.CreateAnneeInscriptionShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateAnneeInscriptionIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="AnneeInscriptionCreateDlg" widgetVar="AnneeInscriptionCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAnneeInscriptionTitle}">
+            <h:form id="AnneeInscriptionCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{anneeInscriptionController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAnneeInscriptionLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{anneeInscriptionController.selected.id}" title="#{bundle.CreateAnneeInscriptionTitle_id}" />
+                        <p:outputLabel value="#{bundle.CreateAnneeInscriptionLabel_anneeInscription}" for="anneeInscription" />
+                        <p:inputText id="anneeInscription" value="#{anneeInscriptionController.selected.anneeInscription}" title="#{bundle.CreateAnneeInscriptionTitle_anneeInscription}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{anneeInscriptionController.create}" value="#{bundle.Save}" update="display,:AnneeInscriptionListForm:datalist,:growl" oncomplete="handleSubmit(args,'AnneeInscriptionCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AnneeInscriptionCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

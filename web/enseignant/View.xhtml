@@ -3,36 +3,32 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewEnseignantTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewEnseignantLabel_id}"/>
-                    <h:outputText value="#{enseignantController.selected.id}" title="#{bundle.ViewEnseignantTitle_id}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{enseignantController.destroyAndView}" value="#{bundle.ViewEnseignantDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewEnseignantEditLink}"/>
-                <br />
-                <h:commandLink action="#{enseignantController.prepareCreate}" value="#{bundle.ViewEnseignantCreateLink}" />
-                <br />
-                <h:commandLink action="#{enseignantController.prepareList}" value="#{bundle.ViewEnseignantShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewEnseignantIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="EnseignantViewDlg" widgetVar="EnseignantViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEnseignantTitle}">
+            <h:form id="EnseignantViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_id}"/>
+                        <h:outputText value="#{enseignantController.selected.id}" title="#{bundle.ViewEnseignantTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_nom}"/>
+                        <h:outputText value="#{enseignantController.selected.nom}" title="#{bundle.ViewEnseignantTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_prenom}"/>
+                        <h:outputText value="#{enseignantController.selected.prenom}" title="#{bundle.ViewEnseignantTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_email}"/>
+                        <h:outputText value="#{enseignantController.selected.email}" title="#{bundle.ViewEnseignantTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_password}"/>
+                        <h:outputText value="#{enseignantController.selected.password}" title="#{bundle.ViewEnseignantTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_filiere}"/>
+                        <h:outputText value="#{enseignantController.selected.filiere}" title="#{bundle.ViewEnseignantTitle_filiere}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EnseignantViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

@@ -3,36 +3,24 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewDemandeTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewDemandeLabel_id}"/>
-                    <h:outputText value="#{demandeController.selected.id}" title="#{bundle.ViewDemandeTitle_id}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{demandeController.destroyAndView}" value="#{bundle.ViewDemandeDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewDemandeEditLink}"/>
-                <br />
-                <h:commandLink action="#{demandeController.prepareCreate}" value="#{bundle.ViewDemandeCreateLink}" />
-                <br />
-                <h:commandLink action="#{demandeController.prepareList}" value="#{bundle.ViewDemandeShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewDemandeIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="DemandeViewDlg" widgetVar="DemandeViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewDemandeTitle}">
+            <h:form id="DemandeViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{demandeController.selected != null}">
+                        <h:outputText value="#{bundle.ViewDemandeLabel_id}"/>
+                        <h:outputText value="#{demandeController.selected.id}" title="#{bundle.ViewDemandeTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewDemandeLabel_etudiant}"/>
+                        <h:outputText value="#{demandeController.selected.etudiant}" title="#{bundle.ViewDemandeTitle_etudiant}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="DemandeViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

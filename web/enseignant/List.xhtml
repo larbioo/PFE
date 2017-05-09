@@ -3,47 +3,79 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
     <ui:composition template="/template.xhtml">
+
+
         <ui:define name="title">
             <h:outputText value="#{bundle.ListEnseignantTitle}"></h:outputText>
         </ui:define>
+
         <ui:define name="body">
-            <h:form styleClass="jsfcrud_list_form">
-                <h:panelGroup id="messagePanel" layout="block">
-                    <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-                </h:panelGroup>
-                <h:outputText escape="false" value="#{bundle.ListEnseignantEmpty}" rendered="#{enseignantController.items.rowCount == 0}"/>
-                <h:panelGroup rendered="#{enseignantController.items.rowCount > 0}">
-                    <h:outputText value="#{enseignantController.pagination.pageFirstItem + 1}..#{enseignantController.pagination.pageLastItem + 1}/#{enseignantController.pagination.itemsCount}"/>&nbsp;
-                    <h:commandLink action="#{enseignantController.previous}" value="#{bundle.Previous} #{enseignantController.pagination.pageSize}" rendered="#{enseignantController.pagination.hasPreviousPage}"/>&nbsp;
-                    <h:commandLink action="#{enseignantController.next}" value="#{bundle.Next} #{enseignantController.pagination.pageSize}" rendered="#{enseignantController.pagination.hasNextPage}"/>&nbsp;
-                    <h:dataTable value="#{enseignantController.items}" var="item" border="0" cellpadding="2" cellspacing="0" rowClasses="jsfcrud_odd_row,jsfcrud_even_row" rules="all" style="border:solid 1px">
-                        <h:column>
+            <h:form id="EnseignantListForm">
+                <p:panel header="#{bundle.ListEnseignantTitle}">
+                    <p:dataTable id="datalist" value="#{enseignantController.items}" var="item"
+                                 selectionMode="single" selection="#{enseignantController.selected}"
+                                 paginator="true"
+                                 rowKey="#{item.id}"
+                                 rows="10"
+                                 rowsPerPageTemplate="10,20,30,40,50"
+                                 >
+
+                        <p:ajax event="rowSelect"   update="createButton viewButton editButton deleteButton"/>
+                        <p:ajax event="rowUnselect" update="createButton viewButton editButton deleteButton"/>
+
+                        <p:column>
                             <f:facet name="header">
                                 <h:outputText value="#{bundle.ListEnseignantTitle_id}"/>
                             </f:facet>
                             <h:outputText value="#{item.id}"/>
-                        </h:column>
-                        <h:column>
+                        </p:column>
+                        <p:column>
                             <f:facet name="header">
-                                <h:outputText value="&nbsp;"/>
+                                <h:outputText value="#{bundle.ListEnseignantTitle_nom}"/>
                             </f:facet>
-                            <h:commandLink action="#{enseignantController.prepareView}" value="#{bundle.ListEnseignantViewLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{enseignantController.prepareEdit}" value="#{bundle.ListEnseignantEditLink}"/>
-                            <h:outputText value=" "/>
-                            <h:commandLink action="#{enseignantController.destroy}" value="#{bundle.ListEnseignantDestroyLink}"/>
-                        </h:column>
-                    </h:dataTable>
-                </h:panelGroup>
-                <br />
-                <h:commandLink action="#{enseignantController.prepareCreate}" value="#{bundle.ListEnseignantCreateLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ListEnseignantIndexLink}"/>
+                            <h:outputText value="#{item.nom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_prenom}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.prenom}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_email}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.email}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_password}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.password}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="#{bundle.ListEnseignantTitle_filiere}"/>
+                            </f:facet>
+                            <h:outputText value="#{item.filiere}"/>
+                        </p:column>
+                        <f:facet name="footer">
+                            <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{enseignantController.prepareCreate}" update=":EnseignantCreateForm" oncomplete="PF('EnseignantCreateDialog').show()"/>
+                            <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EnseignantViewForm" oncomplete="PF('EnseignantViewDialog').show()" disabled="#{empty enseignantController.selected}"/>
+                            <p:commandButton id="editButton"   icon="ui-icon-pencil" value="#{bundle.Edit}" update=":EnseignantEditForm" oncomplete="PF('EnseignantEditDialog').show()" disabled="#{empty enseignantController.selected}"/>
+                            <p:commandButton id="deleteButton" icon="ui-icon-trash"  value="#{bundle.Delete}" actionListener="#{enseignantController.destroy}" update=":growl,datalist" disabled="#{empty enseignantController.selected}"/>
+                        </f:facet>
+                    </p:dataTable>
+                </p:panel>
             </h:form>
+
+            <ui:include src="Create.xhtml"/>
+            <ui:include src="Edit.xhtml"/>
+            <ui:include src="View.xhtml"/>
         </ui:define>
     </ui:composition>
 

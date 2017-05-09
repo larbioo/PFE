@@ -20,7 +20,7 @@ import javax.persistence.Temporal;
  */
 @Entity
 public class Etudiant implements Serializable {
-    
+
     private static final long serialVersionUID = 1L;
     @Id
     private Long cne;
@@ -32,6 +32,9 @@ public class Etudiant implements Serializable {
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
 
+    @OneToMany(mappedBy = "etudiant")
+    private List<Demande> demandes;
+    
     @OneToMany(mappedBy = "etudiant")
     private List<NoteAnnuelle> noteAnnuelles;
     
@@ -114,6 +117,30 @@ public class Etudiant implements Serializable {
 
     public void setDateNaissance(Date dateNaissance) {
         this.dateNaissance = dateNaissance;
+    }
+
+    public List<Demande> getDemandes() {
+        return demandes;
+    }
+
+    public void setDemandes(List<Demande> demandes) {
+        this.demandes = demandes;
+    }
+
+    public List<NoteAnnuelle> getNoteAnnuelles() {
+        return noteAnnuelles;
+    }
+
+    public void setNoteAnnuelles(List<NoteAnnuelle> noteAnnuelles) {
+        this.noteAnnuelles = noteAnnuelles;
+    }
+
+    public Filiere getFiliere() {
+        return filiere;
+    }
+
+    public void setFiliere(Filiere filiere) {
+        this.filiere = filiere;
     }
 
     @Override

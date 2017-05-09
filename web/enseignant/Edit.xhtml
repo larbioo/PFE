@@ -3,32 +3,38 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.EditEnseignantTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.EditEnseignantLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{enseignantController.selected.id}" title="#{bundle.EditEnseignantTitle_id}" />
-                </h:panelGrid>
-                <h:commandLink action="#{enseignantController.update}" value="#{bundle.EditEnseignantSaveLink}"/>
-                <br />
-                <br />
-                <h:link outcome="View" value="#{bundle.EditEnseignantViewLink}"/>
-                <br />
-                <h:commandLink action="#{enseignantController.prepareList}" value="#{bundle.EditEnseignantShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.EditEnseignantIndexLink}" />
+    <ui:composition>
+
+        <p:dialog id="EnseignantEditDlg" widgetVar="EnseignantEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEnseignantTitle}">
+            <h:form id="EnseignantEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{enseignantController.selected.id}" title="#{bundle.EditEnseignantTitle_id}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{enseignantController.selected.nom}" title="#{bundle.EditEnseignantTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{enseignantController.selected.prenom}" title="#{bundle.EditEnseignantTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{enseignantController.selected.email}" title="#{bundle.EditEnseignantTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{enseignantController.selected.password}" title="#{bundle.EditEnseignantTitle_password}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_filiere}" for="filiere" />
+                        <p:selectOneMenu id="filiere" value="#{enseignantController.selected.filiere}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{filiereController.itemsAvailableSelectOne}"
+                                           var="filiereItem"
+                                           itemValue="#{filiereItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{enseignantController.update}" value="#{bundle.Save}" update="display,:EnseignantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EnseignantEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EnseignantEditDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

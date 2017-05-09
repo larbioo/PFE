@@ -3,31 +3,23 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.CreateAnneeTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputLabel value="#{bundle.CreateAnneeLabel_id}" for="id" />
-                    <h:inputText id="id" value="#{anneeController.selected.id}" title="#{bundle.CreateAnneeTitle_id}" />
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{anneeController.create}" value="#{bundle.CreateAnneeSaveLink}" />
-                <br />
-                <br />
-                <h:commandLink action="#{anneeController.prepareList}" value="#{bundle.CreateAnneeShowAllLink}" immediate="true"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.CreateAnneeIndexLink}"/>
+    <ui:composition>
+
+        <p:dialog id="AnneeCreateDlg" widgetVar="AnneeCreateDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.CreateAnneeTitle}">
+            <h:form id="AnneeCreateForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{anneeController.selected != null}">
+                        <p:outputLabel value="#{bundle.CreateAnneeLabel_id}" for="id" />
+                        <p:inputText id="id" value="#{anneeController.selected.id}" title="#{bundle.CreateAnneeTitle_id}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{anneeController.create}" value="#{bundle.Save}" update="display,:AnneeListForm:datalist,:growl" oncomplete="handleSubmit(args,'AnneeCreateDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="AnneeCreateDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>

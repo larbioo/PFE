@@ -22,10 +22,12 @@ public class Annee implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
     @OneToMany(mappedBy = "annee")
     private List<Semestre> semestres;
+    
     @OneToMany(mappedBy = "annee")
     private List<NoteAnnuelle> noteAnnuelles;
     
@@ -35,6 +37,22 @@ public class Annee implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public List<Semestre> getSemestres() {
+        return semestres;
+    }
+
+    public void setSemestres(List<Semestre> semestres) {
+        this.semestres = semestres;
+    }
+
+    public List<NoteAnnuelle> getNoteAnnuelles() {
+        return noteAnnuelles;
+    }
+
+    public void setNoteAnnuelles(List<NoteAnnuelle> noteAnnuelles) {
+        this.noteAnnuelles = noteAnnuelles;
     }
 
     @Override

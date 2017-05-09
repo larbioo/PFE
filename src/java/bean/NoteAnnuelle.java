@@ -22,7 +22,7 @@ public class NoteAnnuelle implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private int nbrModuleValide;
     private Double note;
@@ -38,6 +38,38 @@ public class NoteAnnuelle implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public int getNbrModuleValide() {
+        return nbrModuleValide;
+    }
+
+    public void setNbrModuleValide(int nbrModuleValide) {
+        this.nbrModuleValide = nbrModuleValide;
+    }
+
+    public Double getNote() {
+        return note;
+    }
+
+    public void setNote(Double note) {
+        this.note = note;
+    }
+
+    public Annee getAnnee() {
+        return annee;
+    }
+
+    public void setAnnee(Annee annee) {
+        this.annee = annee;
+    }
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
     }
 
     @Override

@@ -71,6 +71,22 @@ public class Module implements Serializable {
         this.nom = nom;
     }
 
+    public Enseignant getEnseignant() {
+        return enseignant;
+    }
+
+    public void setEnseignant(Enseignant enseignant) {
+        this.enseignant = enseignant;
+    }
+
+    public Filiere getFiliere() {
+        return filiere;
+    }
+
+    public void setFiliere(Filiere filiere) {
+        this.filiere = filiere;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

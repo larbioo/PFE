@@ -6,10 +6,13 @@
 package bean;
 
 import java.io.Serializable;
+import java.util.List;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 
 /**
  *
@@ -20,11 +23,13 @@ public class Demande implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    @ManyToOne
     private Etudiant etudiant;
-    private Module module;
-    private Semestre semestre;
+    
+    @OneToMany(mappedBy = "demande")
+    private List<DemandeItem> demandeItems;
 
     public Long getId() {
         return id;
@@ -32,6 +37,22 @@ public class Demande implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Etudiant getEtudiant() {
+        return etudiant;
+    }
+
+    public void setEtudiant(Etudiant etudiant) {
+        this.etudiant = etudiant;
+    }
+
+    public List<DemandeItem> getDemandeItems() {
+        return demandeItems;
+    }
+
+    public void setDemandeItems(List<DemandeItem> demandeItems) {
+        this.demandeItems = demandeItems;
     }
 
     @Override

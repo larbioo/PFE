@@ -64,6 +64,14 @@ public class NoteModulaire implements Serializable {
         this.note = note;
     }
 
+    public String getMention() {
+        return mention;
+    }
+
+    public void setMention(String mention) {
+        this.mention = mention;
+    }
+
     @Override
     public int hashCode() {
         int hash = 0;

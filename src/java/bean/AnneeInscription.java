@@ -21,7 +21,7 @@ public class AnneeInscription implements Serializable {
 
     private static final long serialVersionUID = 1L;
     @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Integer anneeInscription;
 
@@ -31,6 +31,14 @@ public class AnneeInscription implements Serializable {
 
     public void setId(Long id) {
         this.id = id;
+    }
+
+    public Integer getAnneeInscription() {
+        return anneeInscription;
+    }
+
+    public void setAnneeInscription(Integer anneeInscription) {
+        this.anneeInscription = anneeInscription;
     }
 
     @Override

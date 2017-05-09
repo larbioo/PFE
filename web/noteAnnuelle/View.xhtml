@@ -3,36 +3,30 @@
 <html xmlns="http://www.w3.org/1999/xhtml"
       xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
       xmlns:h="http://xmlns.jcp.org/jsf/html"
-      xmlns:f="http://xmlns.jcp.org/jsf/core">
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template.xhtml">
-        <ui:define name="title">
-            <h:outputText value="#{bundle.ViewNoteAnnuelleTitle}"></h:outputText>
-        </ui:define>
-        <ui:define name="body">
-            <h:panelGroup id="messagePanel" layout="block">
-                <h:messages errorStyle="color: red" infoStyle="color: green" layout="table"/>
-            </h:panelGroup>
-            <h:form>
-                <h:panelGrid columns="2">
-                    <h:outputText value="#{bundle.ViewNoteAnnuelleLabel_id}"/>
-                    <h:outputText value="#{noteAnnuelleController.selected.id}" title="#{bundle.ViewNoteAnnuelleTitle_id}"/>
-                </h:panelGrid>
-                <br />
-                <h:commandLink action="#{noteAnnuelleController.destroyAndView}" value="#{bundle.ViewNoteAnnuelleDestroyLink}"/>
-                <br />
-                <br />
-                <h:link outcome="Edit" value="#{bundle.ViewNoteAnnuelleEditLink}"/>
-                <br />
-                <h:commandLink action="#{noteAnnuelleController.prepareCreate}" value="#{bundle.ViewNoteAnnuelleCreateLink}" />
-                <br />
-                <h:commandLink action="#{noteAnnuelleController.prepareList}" value="#{bundle.ViewNoteAnnuelleShowAllLink}"/>
-                <br />
-                <br />
-                <h:link outcome="/index" value="#{bundle.ViewNoteAnnuelleIndexLink}"/>
+    <ui:composition>
 
+        <p:dialog id="NoteAnnuelleViewDlg" widgetVar="NoteAnnuelleViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewNoteAnnuelleTitle}">
+            <h:form id="NoteAnnuelleViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{noteAnnuelleController.selected != null}">
+                        <h:outputText value="#{bundle.ViewNoteAnnuelleLabel_id}"/>
+                        <h:outputText value="#{noteAnnuelleController.selected.id}" title="#{bundle.ViewNoteAnnuelleTitle_id}"/>
+                        <h:outputText value="#{bundle.ViewNoteAnnuelleLabel_nbrModuleValide}"/>
+                        <h:outputText value="#{noteAnnuelleController.selected.nbrModuleValide}" title="#{bundle.ViewNoteAnnuelleTitle_nbrModuleValide}"/>
+                        <h:outputText value="#{bundle.ViewNoteAnnuelleLabel_note}"/>
+                        <h:outputText value="#{noteAnnuelleController.selected.note}" title="#{bundle.ViewNoteAnnuelleTitle_note}"/>
+                        <h:outputText value="#{bundle.ViewNoteAnnuelleLabel_annee}"/>
+                        <h:outputText value="#{noteAnnuelleController.selected.annee}" title="#{bundle.ViewNoteAnnuelleTitle_annee}"/>
+                        <h:outputText value="#{bundle.ViewNoteAnnuelleLabel_etudiant}"/>
+                        <h:outputText value="#{noteAnnuelleController.selected.etudiant}" title="#{bundle.ViewNoteAnnuelleTitle_etudiant}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="NoteAnnuelleViewDialog.hide()"/>
+                </h:panelGroup>
             </h:form>
-        </ui:define>
-    </ui:composition>
+        </p:dialog>
 
+    </ui:composition>
 </html>
