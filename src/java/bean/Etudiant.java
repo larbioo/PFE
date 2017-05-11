@@ -31,6 +31,11 @@ public class Etudiant implements Serializable {
     private String email;
     private String gender;
     private String password;
+    /* Wrote By Youssef */
+    private boolean mdpChanged;
+    private boolean blocked;
+    private int nbrCnx;
+    /* Wrote By Youssef */
     @Temporal(javax.persistence.TemporalType.DATE)
     private Date dateNaissance;
 
@@ -155,6 +160,32 @@ public class Etudiant implements Serializable {
     public void setDevices(List<Device> devices) {
         this.devices = devices;
     }
+
+    public boolean isMdpChanged() {
+        return mdpChanged;
+    }
+
+    public void setMdpChanged(boolean mdpChanged) {
+        this.mdpChanged = mdpChanged;
+    }
+
+    public int getNbrCnx() {
+        return nbrCnx;
+    }
+
+    public void setNbrCnx(int nbrCnx) {
+        this.nbrCnx = nbrCnx;
+    }
+
+    public boolean isBlocked() {
+        return blocked;
+    }
+
+    public void setBlocked(boolean blocked) {
+        this.blocked = blocked;
+    }
+    
+    
 
     @Override
     public int hashCode() {
