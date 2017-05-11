@@ -38,7 +38,7 @@ public class Enseignant implements Serializable {
     private int nbrCnx;
     private boolean mdpChanged;
     private boolean admine;
-    private int tentativeRest;
+    //private int tentativeRest;
     
     @OneToMany(mappedBy = "enseignant")
     private List<Module> modules;
@@ -161,13 +161,7 @@ public class Enseignant implements Serializable {
         this.admine = admine;
     }
 
-    public int getTentativeRest() {
-        return tentativeRest;
-    }
-
-    public void setTentativeRest(int tentativeRest) {
-        this.tentativeRest = tentativeRest;
-    }
+   
 
     public List<Device> getDevices() {
         return devices;
