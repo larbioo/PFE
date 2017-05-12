@@ -5,7 +5,10 @@
  */
 package service;
 
+import bean.Etudiant;
 import bean.NoteModulaire;
+import bean.Semestre;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
@@ -29,4 +32,7 @@ public class NoteModulaireFacade extends AbstractFacade<NoteModulaire> {
         super(NoteModulaire.class);
     }
     
+     public List<NoteModulaire> findNoteModulaireBySemestre(Semestre semestre){
+        return em.createQuery("SELECT nm FROM NoteModulaire nm WHERE nm.module.semestre="+semestre.getId()).getResultList();
+    }
 }

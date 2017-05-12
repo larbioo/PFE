@@ -6,6 +6,8 @@
 package service;
 
 import bean.Etudiant;
+import bean.Semestre;
+import java.util.List;
 import javax.ejb.Stateless;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;

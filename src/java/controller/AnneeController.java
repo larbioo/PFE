@@ -32,6 +32,9 @@ public class AnneeController implements Serializable {
     }
 
     public Annee getSelected() {
+        if (selected==null){
+            selected= new Annee();
+        }
         return selected;
     }
 
