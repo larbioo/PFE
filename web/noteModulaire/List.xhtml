@@ -57,6 +57,12 @@
                             </f:facet>
                             <h:outputText value="#{item.mention}"/>
                         </p:column>
+                        <p:column>
+                            <f:facet name="header">
+                                <h:outputText value="Etat"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etat}"/>
+                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{noteModulaireController.prepareCreate}" update=":NoteModulaireCreateForm" oncomplete="PF('NoteModulaireCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":NoteModulaireViewForm" oncomplete="PF('NoteModulaireViewDialog').show()" disabled="#{empty noteModulaireController.selected}"/>

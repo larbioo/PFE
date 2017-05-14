@@ -28,6 +28,7 @@ public class NoteSemestre implements Serializable {
     private Double note;
     private String mention;
     private int nbrModuleValide;
+    private int etat; // added 12/05/2017
     
     @ManyToOne
     private Etudiant etudiant;
@@ -75,6 +76,16 @@ public class NoteSemestre implements Serializable {
         this.mention = mention;
     }
 
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+
+    
+    
     public int getNbrModuleValide() {
         return nbrModuleValide;
     }

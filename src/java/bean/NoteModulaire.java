@@ -25,7 +25,7 @@ public class NoteModulaire implements Serializable {
     private Long id;
     private Double note;
     private String mention;
-    
+    private int etat; // added 12/05/2017
 
     @ManyToOne
     private Etudiant etudiant;
@@ -67,6 +67,16 @@ public class NoteModulaire implements Serializable {
     public String getMention() {
         return mention;
     }
+
+    public int getEtat() {
+        return etat;
+    }
+
+    public void setEtat(int etat) {
+        this.etat = etat;
+    }
+    
+    
 
     public void setMention(String mention) {
         this.mention = mention;
