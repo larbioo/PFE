@@ -1,0 +1,31 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <ui:composition template="/template/simpleTemplate.xhtml">
+        <ui:define name="title">
+            FSTG | Etudiant Connexion 
+        </ui:define>
+        <ui:define name="content">
+            <h:form>
+                <h1><h:outputText value="Connection Etudiant"/></h1>
+                <!--<p:panelGrid columns="2">-->
+                    <p:outputLabel value="CNE:" for="cne" />
+                    <p:inputText id="cne" value="#{connectionController.selectedEtud.cne}" title="Cne" />
+                    <p:outputLabel value="Password:" for="password" />
+                    <p:password id="password" value="#{connectionController.selectedEtud.password}" title="Password" />
+                <!--</p:panelGrid>-->
+                <p:commandButton value="Se Connecter" actionListener="#{connectionController.signInEtud()}" update="messageConnection" />
+                <br/>
+                <br/>
+                <br/>
+                <p:outputLabel id="messageConnection" value="#{connectionController.messageConnection}" />
+            </h:form>
+            
+            
+        </ui:define>
+    </ui:composition>
+</html>
+

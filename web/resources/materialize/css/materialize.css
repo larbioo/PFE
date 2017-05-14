@@ -2179,7 +2179,7 @@ header,
 hgroup,
 main,
 menu,
-nav,
+
 section,
 summary {
   display: block;
@@ -2574,7 +2574,7 @@ a {
   box-shadow: none !important;
 }
 
-.z-depth-1, nav, .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
+.z-depth-1,  .card-panel, .card, .toast, .btn, .btn-large, .btn-floating, .dropdown-content, .collapsible, .side-nav {
   box-shadow: 0 2px 2px 0 rgba(0, 0, 0, 0.14), 0 1px 5px 0 rgba(0, 0, 0, 0.12), 0 3px 1px -2px rgba(0, 0, 0, 0.2);
 }
 
@@ -3313,13 +3313,13 @@ span.badge[data-badge-caption]::after {
   content: " " attr(data-badge-caption);
 }
 
-nav ul a span.badge {
+/*nav ul a span.badge {
   display: inline-block;
   float: none;
   margin-left: 4px;
   line-height: 22px;
   height: 22px;
-}
+}*/
 
 .collection-item span.badge {
   margin-top: calc(0.75rem - 11px);
@@ -4181,19 +4181,19 @@ nav ul a span.badge {
   }
 }
 
-nav {
+/*nav {
     color: #993300;
     background-color: #f6f6f6;
   width: 100%;
   height: 56px;
   line-height: 56px;
-}
+}*/
 
-nav.nav-extended {
+/*nav.nav-extended {
   height: auto;
-}
+}*/
 
-nav.nav-extended .nav-wrapper {
+/*nav.nav-extended .nav-wrapper {
   min-height: 56px;
   height: auto;
 }
@@ -4219,8 +4219,8 @@ nav i.material-icons {
 nav .nav-wrapper {
   position: relative;
   height: 100%;
-}
-
+}*/
+/*
 @media only screen and (min-width: 993px) {
   nav a.button-collapse {
     display: none;
@@ -4391,7 +4391,7 @@ nav .input-field label.active i {
   .navbar-fixed {
     height: 64px;
   }
-}
+}*/
 
 @font-face {
   font-family: "Roboto";
