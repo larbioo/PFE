@@ -59,6 +59,12 @@
                         </p:column>
                         <p:column>
                             <f:facet name="header">
+                                <h:outputText value="Etat"/>
+                            </f:facet>
+                            <h:outputText value="#{item.etat}"/>
+                        </p:column>
+                        <p:column>
+                            <f:facet name="header">
                                 <h:outputText value="#{bundle.ListNoteSemestreTitle_nbrModuleValide}"/>
                             </f:facet>
                             <h:outputText value="#{item.nbrModuleValide}"/>

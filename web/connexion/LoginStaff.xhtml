@@ -6,26 +6,24 @@
       xmlns:p="http://primefaces.org/ui">
     <ui:composition template="/template/simpleTemplate.xhtml">
         <ui:define name="title">
-            FSTG | Etudiant Connexion 
+            FSTG | Connexion Staff
         </ui:define>
         <ui:define name="content">
-            <h:form class="form-group">
-                <h1><h:outputText value="Connection Etudiant"/></h1>
-                <!--<p:panelGrid columns="2">-->
-                    <p:outputLabel value="CNE:" for="cne" />
-                    <p:inputText id="cne" class="form-control" value="#{connectionController.selectedEtud.cne}" title="Cne" />
-                    <p:outputLabel value="Password:" for="password" />
-                    <p:password id="password" class="form-control" value="#{connectionController.selectedEtud.password}" title="Password" />
-                <!--</p:panelGrid>-->
-                <br/>
-                <br/>
-                <p:commandButton value="Se Connecter" class="btn center" actionListener="#{connectionController.signInEtud()}" update="messageConnection" />
-                <br/>
-                <br/>
-                <br/>
-                <p:outputLabel id="messageConnection" value="#{connectionController.messageConnection}" />
-            </h:form>
             
+            <h:form class="form-group">
+                <h1><h:outputText value="Connection Enseignant"/></h1>
+                    <p:outputLabel value="Cin:" for="cin" />
+                    <p:inputText id="cin" class="form-control" value="#{connectionController.selectedEns.cin}" title="Cin" />
+                    <p:outputLabel value="Password:" for="password" />
+                    <p:inputText id="password" class="form-control" value="#{connectionController.selectedEns.password}" title="Password" />
+                <br/>
+                <br/>
+                <p:commandButton value="OK" actionListener="#{connectionController.signInEns()}" update="messageConnection1" />
+                <br/>
+                <br/>
+                <br/>
+                <p:outputLabel id="messageConnection1" value="#{connectionController.messageConnection}" />
+            </h:form>
             
         </ui:define>
     </ui:composition>
