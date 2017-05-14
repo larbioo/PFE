@@ -66,6 +66,10 @@ public class Device implements Serializable {
     }
 
     public Date getDateCreation() {
+        if ( dateCreation == null )
+        {
+            return dateCreation = new Date();
+        }
         return dateCreation;
     }
 

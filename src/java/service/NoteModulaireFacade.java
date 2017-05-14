@@ -31,8 +31,14 @@ public class NoteModulaireFacade extends AbstractFacade<NoteModulaire> {
     public NoteModulaireFacade() {
         super(NoteModulaire.class);
     }
-    
-     public List<NoteModulaire> findNoteModulaireBySemestre(Semestre semestre){
+    /** 
+    Methode findNoteModulaireBySemestre <br/>
+    Author : Abdallah Afriad <br/>
+    Date : 10/05/2017 <br/>
+     * @param semestre 
+     * 
+     */
+    public List<NoteModulaire> findNoteModulaireBySemestre(Semestre semestre){
         return em.createQuery("SELECT nm FROM NoteModulaire nm WHERE nm.module.semestre="+semestre.getId()).getResultList();
     }
 }

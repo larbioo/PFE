@@ -26,7 +26,7 @@ public class Filiere implements Serializable {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private String libelle;
-    
+
     @OneToMany(mappedBy = "filiere")
     private List<Module> modules;
 
@@ -35,13 +35,13 @@ public class Filiere implements Serializable {
 
     @OneToMany(mappedBy = "filiere")
     private List<Semestre> semestres;
-    
+
     @OneToMany(mappedBy = "filiere")
     private List<Enseignant> enseignants;
-    
+
     @OneToMany(mappedBy = "filiere")
     private List<Etudiant> etudiants;
-    
+
     public Long getId() {
         return id;
     }
@@ -120,7 +120,7 @@ public class Filiere implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Filiere[ id=" + id + " ]";
+        return "Filiere " + libelle;
     }
-    
+
 }

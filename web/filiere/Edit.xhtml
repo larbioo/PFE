@@ -12,8 +12,6 @@
             <h:form id="FiliereEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{filiereController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditFiliereLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{filiereController.selected.id}" title="#{bundle.EditFiliereTitle_id}" />
                         <p:outputLabel value="#{bundle.EditFiliereLabel_libelle}" for="libelle" />
                         <p:inputText id="libelle" value="#{filiereController.selected.libelle}" title="#{bundle.EditFiliereTitle_libelle}" />
                         <p:outputLabel value="#{bundle.EditFiliereLabel_chefFiliere}" for="chefFiliere" />

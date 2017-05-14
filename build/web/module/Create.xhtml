@@ -12,8 +12,6 @@
             <h:form id="ModuleCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{moduleController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateModuleLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{moduleController.selected.id}" title="#{bundle.CreateModuleTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateModuleLabel_semestre}" for="semestre" />
                         <p:selectOneMenu id="semestre" value="#{moduleController.selected.semestre}" >
                             <f:selectItems value="#{semestreController.itemsAvailableSelectOne}"

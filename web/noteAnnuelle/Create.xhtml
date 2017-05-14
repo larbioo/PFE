@@ -12,8 +12,6 @@
             <h:form id="NoteAnnuelleCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{noteAnnuelleController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateNoteAnnuelleLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{noteAnnuelleController.selected.id}" title="#{bundle.CreateNoteAnnuelleTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateNoteAnnuelleLabel_nbrModuleValide}" for="nbrModuleValide" />
                         <p:inputText id="nbrModuleValide" value="#{noteAnnuelleController.selected.nbrModuleValide}" title="#{bundle.CreateNoteAnnuelleTitle_nbrModuleValide}" />
                         <p:outputLabel value="#{bundle.CreateNoteAnnuelleLabel_note}" for="note" />

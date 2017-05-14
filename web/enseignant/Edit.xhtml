@@ -37,8 +37,6 @@
                         <p:calendar id="dateNaissance" pattern="MM/dd/yyyy" value="#{enseignantController.selected.dateNaissance}" title="#{bundle.EditEnseignantTitle_dateNaissance}"  showOn="button"/>
                         <p:outputLabel value="#{bundle.EditEnseignantLabel_nbrCnx}" for="nbrCnx" />
                         <p:inputText id="nbrCnx" value="#{enseignantController.selected.nbrCnx}" title="#{bundle.EditEnseignantTitle_nbrCnx}" />
-                        <p:outputLabel value="#{bundle.EditEnseignantLabel_tentativeRest}" for="tentativeRest" />
-                        <p:inputText id="tentativeRest" value="#{enseignantController.selected.tentativeRest}" title="#{bundle.EditEnseignantTitle_tentativeRest}" />
                     </p:panelGrid>
                     <p:commandButton actionListener="#{enseignantController.update}" value="#{bundle.Save}" update="display,:EnseignantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EnseignantEditDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="EnseignantEditDialog.hide()"/>

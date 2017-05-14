@@ -119,7 +119,7 @@ public class Semestre implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Semestre[ id=" + id + " ]";
+        return "Semestre " + libelle;
     }
 
 }

@@ -6,7 +6,7 @@
       xmlns:f="http://xmlns.jcp.org/jsf/core"
       xmlns:p="http://primefaces.org/ui">
 
-    <ui:composition template="/template/Mytemplate.xhtml">
+    <ui:composition template="/template/sideBarTemplate.xhtml">
 
 
         <ui:define name="title">
@@ -18,16 +18,16 @@
                 <p:panel header="#{bundle.ListNoteSemestreTitle}">
                     
                 <h:outputText value="Select Semestre :"/>
-                <p:selectOneMenu id="semestre"  value="#{pvController.semestre}">
+                <h:selectOneMenu id="semestre"  value="#{pvController.semestre}">
                     <f:selectItem itemValue="#{null}" itemLabel="Select.."/>
                     <f:selectItems value="#{semestreController.itemsAvailableSelectOne}" var="item"
                                    itemValue="#{item}"/>
                     <p:ajax process="semestre" update="datalist" listener="#{pvController.update(item)}"/>
-                </p:selectOneMenu>
+                </h:selectOneMenu>
                 
                     
                 <p:dataTable id="datalist" value="#{pvController.items}" var="item"
-                                 paginator="true"
+                                 
                                  rowKey="#{item.id}"
                                  rows="10"
                                  rowsPerPageTemplate="10,20,30,40,50"

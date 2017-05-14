@@ -63,7 +63,7 @@ public class AnneeInscription implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Inscription[ id=" + id + " ]";
+        return "Annee D'inscription"+annee;
     }
     
 }

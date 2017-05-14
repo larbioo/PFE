@@ -89,12 +89,6 @@
                             </f:facet>
                             <h:outputText value="#{item.nbrCnx}"/>
                         </p:column>
-                        <p:column>
-                            <f:facet name="header">
-                                <h:outputText value="#{bundle.ListEnseignantTitle_tentativeRest}"/>
-                            </f:facet>
-                            <h:outputText value="#{item.tentativeRest}"/>
-                        </p:column>
                         <f:facet name="footer">
                             <p:commandButton id="createButton" icon="ui-icon-plus"   value="#{bundle.Create}" actionListener="#{enseignantController.prepareCreate}" update=":EnseignantCreateForm" oncomplete="PF('EnseignantCreateDialog').show()"/>
                             <p:commandButton id="viewButton"   icon="ui-icon-search" value="#{bundle.View}" update=":EnseignantViewForm" oncomplete="PF('EnseignantViewDialog').show()" disabled="#{empty enseignantController.selected}"/>

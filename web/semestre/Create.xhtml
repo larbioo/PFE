@@ -12,8 +12,6 @@
             <h:form id="SemestreCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{semestreController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateSemestreLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{semestreController.selected.id}" title="#{bundle.CreateSemestreTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateSemestreLabel_annee}" for="annee" />
                         <p:selectOneMenu id="annee" value="#{semestreController.selected.annee}" >
                             <f:selectItems value="#{anneeController.itemsAvailableSelectOne}"
@@ -29,7 +27,11 @@
                                            itemValue="#{filiereItem}"/>
                         </p:selectOneMenu>
                         <p:outputLabel value="#{bundle.CreateSemestreLabel_enseignant}" for="enseignant" />
-                        <p:inputText id="enseignant" value="#{semestreController.selected.enseignant}" title="#{bundle.CreateSemestreTitle_enseignant}" />
+                        <p:selectOneMenu id="enseignant" value="#{semestreController.selected.enseignant}" >
+                            <f:selectItems value="#{enseignantController.itemsAvailableSelectOne}"
+                                           var="enseignantItem"
+                                           itemValue="#{enseignantItem}"/>
+                        </p:selectOneMenu>
                     </p:panelGrid>
                     <p:commandButton actionListener="#{semestreController.create}" value="#{bundle.Save}" update="display,:SemestreListForm:datalist,:growl" oncomplete="handleSubmit(args,'SemestreCreateDialog');"/>
                     <p:commandButton value="#{bundle.Cancel}" onclick="SemestreCreateDialog.hide()"/>

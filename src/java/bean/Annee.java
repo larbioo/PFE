@@ -86,7 +86,7 @@ public class Annee implements Serializable {
 
     @Override
     public String toString() {
-        return "bean.Annee[ id=" + id + " ]";
+        return "Annee "+libelle;
     }
     
 }

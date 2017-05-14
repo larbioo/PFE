@@ -12,8 +12,6 @@
             <h:form id="DemandeEditForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{demandeController.selected != null}">
-                        <p:outputLabel value="#{bundle.EditDemandeLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{demandeController.selected.id}" title="#{bundle.EditDemandeTitle_id}" />
                         <p:outputLabel value="#{bundle.EditDemandeLabel_etudiant}" for="etudiant" />
                         <p:selectOneMenu id="etudiant" value="#{demandeController.selected.etudiant}" >
                             <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>

@@ -12,8 +12,6 @@
             <h:form id="NoteModulaireCreateForm">
                 <h:panelGroup id="display">
                     <p:panelGrid columns="2" rendered="#{noteModulaireController.selected != null}">
-                        <p:outputLabel value="#{bundle.CreateNoteModulaireLabel_id}" for="id" />
-                        <p:inputText id="id" value="#{noteModulaireController.selected.id}" title="#{bundle.CreateNoteModulaireTitle_id}" />
                         <p:outputLabel value="#{bundle.CreateNoteModulaireLabel_etudiant}" for="etudiant" />
                         <p:selectOneMenu id="etudiant" value="#{noteModulaireController.selected.etudiant}" >
                             <f:selectItems value="#{etudiantController.itemsAvailableSelectOne}"
