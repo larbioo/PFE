@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EnseignantViewDlg" widgetVar="EnseignantViewDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.ViewEnseignantTitle}">
+            <h:form id="EnseignantViewForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_cin}"/>
+                        <h:outputText value="#{enseignantController.selected.cin}" title="#{bundle.ViewEnseignantTitle_cin}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_nom}"/>
+                        <h:outputText value="#{enseignantController.selected.nom}" title="#{bundle.ViewEnseignantTitle_nom}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_prenom}"/>
+                        <h:outputText value="#{enseignantController.selected.prenom}" title="#{bundle.ViewEnseignantTitle_prenom}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_email}"/>
+                        <h:outputText value="#{enseignantController.selected.email}" title="#{bundle.ViewEnseignantTitle_email}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_password}"/>
+                        <h:outputText value="#{enseignantController.selected.password}" title="#{bundle.ViewEnseignantTitle_password}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_filiere}"/>
+                        <h:outputText value="#{enseignantController.selected.filiere}" title="#{bundle.ViewEnseignantTitle_filiere}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_telephone}"/>
+                        <h:outputText value="#{enseignantController.selected.telephone}" title="#{bundle.ViewEnseignantTitle_telephone}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_gender}"/>
+                        <h:outputText value="#{enseignantController.selected.gender}" title="#{bundle.ViewEnseignantTitle_gender}"/>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_dateNaissance}"/>
+                        <h:outputText value="#{enseignantController.selected.dateNaissance}" title="#{bundle.ViewEnseignantTitle_dateNaissance}">
+                            <f:convertDateTime pattern="MM/dd/yyyy" />
+                        </h:outputText>
+                        <h:outputText value="#{bundle.ViewEnseignantLabel_nbrCnx}"/>
+                        <h:outputText value="#{enseignantController.selected.nbrCnx}" title="#{bundle.ViewEnseignantTitle_nbrCnx}"/>
+                    </p:panelGrid>
+                    <p:commandButton value="#{bundle.Close}" onclick="EnseignantViewDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

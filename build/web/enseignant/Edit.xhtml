@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="EnseignantEditDlg" widgetVar="EnseignantEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditEnseignantTitle}">
+            <h:form id="EnseignantEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{enseignantController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_cin}" for="cin" />
+                        <p:inputText id="cin" value="#{enseignantController.selected.cin}" title="#{bundle.EditEnseignantTitle_cin}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_nom}" for="nom" />
+                        <p:inputText id="nom" value="#{enseignantController.selected.nom}" title="#{bundle.EditEnseignantTitle_nom}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_prenom}" for="prenom" />
+                        <p:inputText id="prenom" value="#{enseignantController.selected.prenom}" title="#{bundle.EditEnseignantTitle_prenom}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_email}" for="email" />
+                        <p:inputText id="email" value="#{enseignantController.selected.email}" title="#{bundle.EditEnseignantTitle_email}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_password}" for="password" />
+                        <p:inputText id="password" value="#{enseignantController.selected.password}" title="#{bundle.EditEnseignantTitle_password}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_filiere}" for="filiere" />
+                        <p:selectOneMenu id="filiere" value="#{enseignantController.selected.filiere}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{filiereController.itemsAvailableSelectOne}"
+                                           var="filiereItem"
+                                           itemValue="#{filiereItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_telephone}" for="telephone" />
+                        <p:inputText id="telephone" value="#{enseignantController.selected.telephone}" title="#{bundle.EditEnseignantTitle_telephone}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_gender}" for="gender" />
+                        <p:inputText id="gender" value="#{enseignantController.selected.gender}" title="#{bundle.EditEnseignantTitle_gender}" />
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_dateNaissance}" for="dateNaissance" />
+                        <p:calendar id="dateNaissance" pattern="MM/dd/yyyy" value="#{enseignantController.selected.dateNaissance}" title="#{bundle.EditEnseignantTitle_dateNaissance}"  showOn="button"/>
+                        <p:outputLabel value="#{bundle.EditEnseignantLabel_nbrCnx}" for="nbrCnx" />
+                        <p:inputText id="nbrCnx" value="#{enseignantController.selected.nbrCnx}" title="#{bundle.EditEnseignantTitle_nbrCnx}" />
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{enseignantController.update}" value="#{bundle.Save}" update="display,:EnseignantListForm:datalist,:growl" oncomplete="handleSubmit(args, 'EnseignantEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="EnseignantEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>

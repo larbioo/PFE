@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:f="http://xmlns.jcp.org/jsf/core"
+      xmlns:p="http://primefaces.org/ui">
+
+    <ui:composition>
+
+        <p:dialog id="DemandeItemEditDlg" widgetVar="DemandeItemEditDialog" modal="true" resizable="false" appendTo="@(body)" header="#{bundle.EditDemandeItemTitle}">
+            <h:form id="DemandeItemEditForm">
+                <h:panelGroup id="display">
+                    <p:panelGrid columns="2" rendered="#{demandeItemController.selected != null}">
+                        <p:outputLabel value="#{bundle.EditDemandeItemLabel_module}" for="module" />
+                        <p:selectOneMenu id="module" value="#{demandeItemController.selected.module}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{moduleController.itemsAvailableSelectOne}"
+                                           var="moduleItem"
+                                           itemValue="#{moduleItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditDemandeItemLabel_semestre}" for="semestre" />
+                        <p:selectOneMenu id="semestre" value="#{demandeItemController.selected.semestre}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{semestreController.itemsAvailableSelectOne}"
+                                           var="semestreItem"
+                                           itemValue="#{semestreItem}"/>
+                        </p:selectOneMenu>
+                        <p:outputLabel value="#{bundle.EditDemandeItemLabel_demande}" for="demande" />
+                        <p:selectOneMenu id="demande" value="#{demandeItemController.selected.demande}" >
+                            <f:selectItem itemLabel="#{bundle.SelectOneMessage}"/>
+                            <f:selectItems value="#{demandeController.itemsAvailableSelectOne}"
+                                           var="demandeItem"
+                                           itemValue="#{demandeItem}"/>
+                        </p:selectOneMenu>
+                    </p:panelGrid>
+                    <p:commandButton actionListener="#{demandeItemController.update}" value="#{bundle.Save}" update="display,:DemandeItemListForm:datalist,:growl" oncomplete="handleSubmit(args, 'DemandeItemEditDialog');"/>
+                    <p:commandButton value="#{bundle.Cancel}" onclick="DemandeItemEditDialog.hide()"/>
+                </h:panelGroup>
+            </h:form>
+        </p:dialog>
+
+    </ui:composition>
+</html>
